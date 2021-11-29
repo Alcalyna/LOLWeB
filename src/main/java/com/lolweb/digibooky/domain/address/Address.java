@@ -15,6 +15,22 @@ public class Address {
         city = builder.city;
     }
 
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     public static final class AddressBuilder {
         private String streetName;
         private String streetNumber;
@@ -52,6 +68,7 @@ public class Address {
             this.city = city;
             return this;
         }
-
     }
+
+
 }
