@@ -25,7 +25,7 @@ public class User {
         address = builder.address;
     }
 
-    private enum Role {
+    protected enum Role {
         ADMIN,
         LIBRARIAN,
         MEMBER
@@ -51,8 +51,8 @@ public class User {
             return new User(this);
         }
 
-        public UserBuilder withId(UUID id) {
-            this.id = id;
+        public UserBuilder withId() {
+            this.id = UUID.randomUUID();
             return this;
         }
 
@@ -85,5 +85,33 @@ public class User {
             this.address = address;
             return this;
         }
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public EmailAddress getEmailAddress() {
+        return emailAddress;
+    }
+
+    public String getInss() {
+        return inss;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 }

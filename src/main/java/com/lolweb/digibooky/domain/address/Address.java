@@ -1,5 +1,7 @@
 package com.lolweb.digibooky.domain.address;
 
+import java.util.Objects;
+
 public class Address {
 
     private final String streetName;
@@ -70,5 +72,16 @@ public class Address {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(streetName, address.streetName) && Objects.equals(streetNumber, address.streetNumber) && Objects.equals(postCode, address.postCode) && Objects.equals(city, address.city);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(streetName, streetNumber, postCode, city);
+    }
 }
