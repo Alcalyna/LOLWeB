@@ -2,6 +2,7 @@ package com.lolweb.digibooky.domain.user;
 
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
+import com.lolweb.digibooky.service.dtos.UserDto;
 
 import java.util.UUID;
 
@@ -25,7 +26,16 @@ public class User {
         address = builder.address;
     }
 
-    protected enum Role {
+    public User (UserDto userDto) {
+        id = userDto.getId();
+        firstName = userDto.getFirstName();
+        lastName = userDto.getLastName();
+        emailAddress = userDto.getEmailAddress();
+        inss = userDto.getInss();
+        role = userDto.getRole();
+        address = userDto.getAddress();
+    }
+    public enum Role {
         ADMIN,
         LIBRARIAN,
         MEMBER
