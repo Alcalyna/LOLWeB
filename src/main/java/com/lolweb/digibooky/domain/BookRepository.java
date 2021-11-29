@@ -25,4 +25,7 @@ public class BookRepository {
         return booksInLibrary.values().stream().collect(Collectors.toList());
     }
 
+    public Book getBookById(UUID id) {
+        return booksInLibrary.get(id);
+    }
 }
