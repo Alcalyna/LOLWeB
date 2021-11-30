@@ -52,4 +52,6 @@ public class BookControllerIntegrationTest {
         Assertions.assertEquals("123456789000000",bookDto.getIsbn());
         Assertions.assertTrue(bookDto.isAvailable());
     }
+
+
 }

@@ -16,8 +16,8 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public void addNewMember(UserDto newMember) {
-        userRepository.save(userMapper.convertDtoToUser(newMember));
+    public void addNewUser(UserDto newUser) {
+        userRepository.save(userMapper.convertDtoToUser(newUser));
     }
 
     public UserRepository getUserRepository() {

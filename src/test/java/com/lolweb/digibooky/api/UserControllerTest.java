@@ -18,7 +18,8 @@ class UserControllerTest {
     private UserRepository userRepository;
     private UserMapper userMapper;
     private Address address;
-    private User user;
+    private User member;
+    private User librarian;
 
     @BeforeEach
 
@@ -27,15 +28,38 @@ class UserControllerTest {
         userMapper = new UserMapper();
         userService = new UserService(userRepository, userMapper);
         userController = new UserController(userService);
+        initUsers();
+    }
 
+    @Test
+    void GivenUser_WhenRegisteredAsAMember_Then_NewMemberAdded() {
+        userController.registerMember(userMapper.convertUserToDto(member));
+        assertTrue(userRepository.getAll().size() > 1);
+    }
+
+    @Test
+    void GivenUser_WhenRegisteredAsAMember_Then_RoleIsMember() {
+        userController.registerMember(userMapper.convertUserToDto(member));
+        assertEquals(userRepository.getUserById(member.getId()).getRole(), User.Role.MEMBER);
+    }
+    /*
+    @Test
+    void GivenUser_whenRegisteredAsALibrarian_then_RoleIsLibrarian(){
+        userController.registerLibrarian(userMapper.convertUserToDto(librarian));
+        assertEquals(userRepository.getUserById(librarian.getId()).getRole(), User.Role.LIBRARIAN);
+    }*/
+
+
+    private void initUsers(){
+        // member
         address = Address.AddressBuilder.addressBuilder()
-                .withStreetName("LolWeb street")
+                .withStreetName("nightelm street")
                 .withCity("Switchfully City")
                 .withPostCode("2021")
-                .withStreetNumber("29")
+                .withStreetNumber("15")
                 .build();
 
-        user = User.UserBuilder.userBuilder()
+        member = User.UserBuilder.userBuilder()
                 .withId()
                 .withAddress(address)
                 .withEmailAddress(new EmailAddress("julinh", "lolweb.com"))
@@ -44,20 +68,25 @@ class UserControllerTest {
                 .withLastName("Luniel")
                 .withRole(User.Role.MEMBER)
                 .build();
-    }
+        // librarian
 
-    @Test
-    void GivenUser_WhenRegisteredAsAMember_Then_NewMemberAdded() {
-        userController.registerMember(userMapper.convertUserToDto(user));
+        address = Address.AddressBuilder.addressBuilder()
+                .withStreetName("LolWeb street")
+                .withCity("Switchfully City")
+                .withPostCode("2021")
+                .withStreetNumber("29")
+                .build();
 
-        assertTrue(userRepository.getAll().size() > 0);
-    }
+        librarian = User.UserBuilder.userBuilder()
+                .withId()
+                .withAddress(address)
+                .withEmailAddress(new EmailAddress("Dave", "lolweb.com"))
+                .withInss("959595959595")
+                .withFirstName("Dave")
+                .withLastName("Bookman")
+                .withRole(User.Role.LIBRARIAN)
+                .build();
 
-    @Test
-    void GivenUser_WhenRegisteredAsAMember_Then_RoleIsMember() {
-        userController.registerMember(userMapper.convertUserToDto(user));
-
-        assertEquals(userRepository.getUserById(user.getId()).getRole(), User.Role.MEMBER);
     }
 
 }

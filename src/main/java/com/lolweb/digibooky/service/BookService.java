@@ -58,4 +58,5 @@ public class BookService {
         Book book = bookMapper.mapCreateBookDtoToBook(newBook);
         return bookMapper.mapToBookDto(bookRepository.save(book));
     }
+
 }
