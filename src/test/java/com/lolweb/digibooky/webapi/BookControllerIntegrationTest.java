@@ -15,8 +15,6 @@ import static io.restassured.http.ContentType.JSON;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BookControllerIntegrationTest {
 
-    public static final String ANSI_RED = "\u001B[31m";
-
     @Value("${server.port}")
     private int port;
 
@@ -47,7 +45,6 @@ public class BookControllerIntegrationTest {
                 .as(BookDto.class);
 
         // THEN
-//        System.out.println(ANSI_RED + "This is red : " + bookDto.getId() + ANSI_RED);
         Assertions.assertTrue(!bookDto.getId().toString().isBlank());
         Assertions.assertEquals("LOLWeB", bookDto.getTitle());
         Assertions.assertEquals("Lulinh", bookDto.getAuthor().getFirstName());
@@ -55,4 +52,6 @@ public class BookControllerIntegrationTest {
         Assertions.assertEquals("123456789000000",bookDto.getIsbn());
         Assertions.assertTrue(bookDto.isAvailable());
     }
+
+
 }
