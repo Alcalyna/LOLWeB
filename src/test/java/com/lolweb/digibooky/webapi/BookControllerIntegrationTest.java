@@ -53,6 +53,6 @@ public class BookControllerIntegrationTest {
         assertThat(bookDto.getAuthor().getFirstName().equals("Lulinh"));
         assertThat(bookDto.getAuthor().getLastName().equals("Juniel"));
         assertThat(bookDto.getIsbn().equals("123456789000000"));
-        assertThat(bookDto.getIsAvailable());
+        assertThat(bookDto.isAvailable());
     }
 }

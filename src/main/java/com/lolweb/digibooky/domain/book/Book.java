@@ -20,7 +20,7 @@ public class Book {
         this.isbn = bookDto.getIsbn();
         this.title = bookDto.getTitle();
         this.author = bookDto.getAuthor();
-        this.isAvailable = bookDto.getIsAvailable();
+        this.isAvailable = bookDto.isAvailable();
     }
 
     public Book(CreateBookDto createBookDto) {
