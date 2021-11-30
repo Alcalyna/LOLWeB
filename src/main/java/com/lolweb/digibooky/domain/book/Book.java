@@ -85,4 +85,8 @@ public class Book {
             return new Book(this);
         }
     }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
 }
