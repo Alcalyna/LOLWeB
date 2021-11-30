@@ -1,5 +1,6 @@
 package com.lolweb.digibooky.domain.author;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Author {
@@ -25,4 +26,6 @@ public class Author {
     public String getLastName() {
         return lastName;
     }
+
+
 }

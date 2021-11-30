@@ -3,6 +3,7 @@ package com.lolweb.digibooky.service;
 import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.service.dtos.BookDto;
+import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,11 @@ public class BookService {
         Book bookToReturn = bookRepository.getBookById(id);
         return bookMapper.mapToBookDto(bookToReturn);
     }
+
+    public BookDto addNewBook(CreateBookDto newBook) {
+        Book book = bookMapper.mapCreateBookDtoToBook(newBook);
+        return bookMapper.mapToBookDto(bookRepository.save(book));
+    }
+
+
 }

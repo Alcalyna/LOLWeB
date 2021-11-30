@@ -19,6 +19,14 @@ public class BookMapper {
                 .setAvailable(book.isAvailable());
     }
 
+    public Book mapDtoToBook(BookDto bookDto) {
+        return new Book(bookDto);
+    }
+
+    public Book mapCreateBookDtoToBook(CreateBookDto createBookDto) {
+        return new Book(createBookDto);
+    }
+
     public Book mapToBook(CreateBookDto createBookDto) {
         return BookBuilder
                 .bookBuilder()
