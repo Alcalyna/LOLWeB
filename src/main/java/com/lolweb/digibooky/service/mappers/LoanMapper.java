@@ -12,5 +12,4 @@ public class LoanMapper {
                 .setDueDate(loanToMap.getDueDate())
                 .setId(loanToMap.getId());
     }
-
 }
