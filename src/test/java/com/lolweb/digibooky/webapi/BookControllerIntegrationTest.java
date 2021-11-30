@@ -4,7 +4,7 @@ import com.lolweb.digibooky.domain.author.Author;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import io.restassured.RestAssured;
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,11 +48,11 @@ public class BookControllerIntegrationTest {
 
         // THEN
 //        System.out.println(ANSI_RED + "This is red : " + bookDto.getId() + ANSI_RED);
-        assertThat(!bookDto.getId().toString().isBlank());
-        assertThat(bookDto.getTitle().equals("LOLWeB"));
-        assertThat(bookDto.getAuthor().getFirstName().equals("Lulinh"));
-        assertThat(bookDto.getAuthor().getLastName().equals("Juniel"));
-        assertThat(bookDto.getIsbn().equals("123456789000000"));
-        assertThat(bookDto.isAvailable());
+        Assertions.assertTrue(!bookDto.getId().toString().isBlank());
+        Assertions.assertEquals("LOLWeB", bookDto.getTitle());
+        Assertions.assertEquals("Lulinh", bookDto.getAuthor().getFirstName());
+        Assertions.assertEquals("Juniel", bookDto.getAuthor().getLastName());
+        Assertions.assertEquals("123456789000000",bookDto.getIsbn());
+        Assertions.assertTrue(bookDto.isAvailable());
     }
 }

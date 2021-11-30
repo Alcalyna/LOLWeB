@@ -867,39 +867,75 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'se
 2021-11-30 09:46:59.175  INFO 6552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-11-30 09:46:59.177  INFO 6552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2021-11-30 09:54:37.185  WARN 6552 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.lolweb.digibooky.domain.emailaddress.EmailAddress` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('robert@lafrite.be'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.lolweb.digibooky.domain.emailaddress.EmailAddress` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('robert@lafrite.be')<LF> at [Source: (PushbackInputStream); line: 4, column: 22] (through reference chain: com.lolweb.digibooky.service.dtos.UserDto["emailAddress"])]
-2021-11-30 14:04:26.711  INFO 15276 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on CND6126Z1J with PID 15276 (C:\_development\switchfully\LOLWeB\target\classes started by lmadero in C:\_development\switchfully\LOLWeB)
-2021-11-30 14:04:26.713  INFO 15276 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
-2021-11-30 14:04:27.814  INFO 15276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-11-30 14:04:27.825  INFO 15276 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-30 14:04:27.826  INFO 15276 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
-2021-11-30 14:04:27.916  INFO 15276 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-30 14:04:27.917  INFO 15276 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1146 ms
-2021-11-30 14:04:28.721  INFO 15276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-11-30 14:04:28.732  INFO 15276 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 2.497 seconds (JVM running for 5.32)
-2021-11-30 14:07:19.074  INFO 15276 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-30 14:07:19.075  INFO 15276 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-30 14:07:19.076  INFO 15276 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-30 14:16:25.873  INFO 12596 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on CND6126Z1J with PID 12596 (C:\_development\switchfully\LOLWeB\target\classes started by lmadero in C:\_development\switchfully\LOLWeB)
-2021-11-30 14:16:25.875  INFO 12596 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
-2021-11-30 14:16:26.915  INFO 12596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-11-30 14:16:26.933  INFO 12596 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-30 14:16:26.933  INFO 12596 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
-2021-11-30 14:16:27.011  INFO 12596 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-30 14:16:27.011  INFO 12596 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1086 ms
-2021-11-30 14:16:27.751  INFO 12596 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-11-30 14:16:27.763  INFO 12596 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 2.31 seconds (JVM running for 3.037)
-2021-11-30 14:16:54.326  INFO 12596 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-30 14:16:54.327  INFO 12596 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-30 14:16:54.327  INFO 12596 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2021-11-30 14:22:19.357  INFO 6880 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on CND6126Z1J with PID 6880 (C:\_development\switchfully\LOLWeB\target\classes started by lmadero in C:\_development\switchfully\LOLWeB)
-2021-11-30 14:22:19.364  INFO 6880 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
-2021-11-30 14:22:20.360  INFO 6880 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-11-30 14:22:20.379  INFO 6880 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-30 14:22:20.379  INFO 6880 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
-2021-11-30 14:22:20.464  INFO 6880 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-30 14:22:20.465  INFO 6880 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1023 ms
-2021-11-30 14:22:21.347  INFO 6880 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-11-30 14:22:21.357  INFO 6880 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 2.418 seconds (JVM running for 3.11)
-2021-11-30 14:23:03.551  INFO 6880 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-30 14:23:03.552  INFO 6880 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-30 14:23:03.553  INFO 6880 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 14:14:19.735  INFO 23748 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 23748 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:14:19.737  INFO 23748 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:14:21.851  INFO 23748 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 14:14:21.870  INFO 23748 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:14:21.871  INFO 23748 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:14:22.006  INFO 23748 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:14:22.006  INFO 23748 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1857 ms
+2021-11-30 14:14:24.233  INFO 23748 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 14:14:24.248  INFO 23748 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 5.046 seconds (JVM running for 6.638)
+2021-11-30 14:14:26.643  INFO 23748 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:14:26.644  INFO 23748 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:14:26.645  INFO 23748 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 14:14:42.915  INFO 14076 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on CND6126YTS with PID 14076 (C:\_development\switchfully\LOLWeB\target\classes started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:14:42.919  INFO 14076 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 14:14:43.879  INFO 14076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 14:14:43.896  INFO 14076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:14:43.897  INFO 14076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:14:43.985  INFO 14076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:14:43.986  INFO 14076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 993 ms
+2021-11-30 14:14:44.793  INFO 14076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 14:14:44.806  INFO 14076 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 2.469 seconds (JVM running for 3.25)
+2021-11-30 14:14:52.371  INFO 14076 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:14:52.372  INFO 14076 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:14:52.373  INFO 14076 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 14:15:44.614  INFO 19428 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 19428 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:15:44.615  INFO 19428 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:15:46.436  INFO 19428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 14:15:46.453  INFO 19428 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:15:46.454  INFO 19428 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:15:46.578  INFO 19428 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:15:46.579  INFO 19428 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1632 ms
+2021-11-30 14:15:48.828  INFO 19428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 14:15:48.844  INFO 19428 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 4.77 seconds (JVM running for 6.228)
+2021-11-30 14:15:51.191  INFO 19428 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:15:51.192  INFO 19428 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:15:51.193  INFO 19428 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 14:21:32.090  INFO 4620 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 4620 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:21:32.092  INFO 4620 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:21:33.978  INFO 4620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 14:21:33.994  INFO 4620 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:21:33.995  INFO 4620 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:21:34.135  INFO 4620 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:21:34.135  INFO 4620 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1681 ms
+2021-11-30 14:21:36.253  INFO 4620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 14:21:36.267  INFO 4620 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 4.658 seconds (JVM running for 6.023)
+2021-11-30 14:21:38.514  INFO 4620 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:21:38.515  INFO 4620 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:21:38.516  INFO 4620 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 14:22:43.331  INFO 21004 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 21004 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:22:43.333  INFO 21004 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:22:45.231  INFO 21004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 14:22:45.245  INFO 21004 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:22:45.246  INFO 21004 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:22:45.375  INFO 21004 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:22:45.376  INFO 21004 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1663 ms
+2021-11-30 14:22:47.729  INFO 21004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 14:22:47.747  INFO 21004 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 4.918 seconds (JVM running for 6.399)
+2021-11-30 14:22:50.169  INFO 21004 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:22:50.170  INFO 21004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:22:50.172  INFO 21004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-11-30 14:30:13.831  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 13712 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:30:13.834  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:30:15.761  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 14:30:15.783  INFO 13712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:30:15.784  INFO 13712 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:30:15.974  INFO 13712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:30:15.974  INFO 13712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1768 ms
+2021-11-30 14:30:18.287  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4040 (http) with context path ''
+2021-11-30 14:30:18.301  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 5.009 seconds (JVM running for 6.477)
+2021-11-30 14:30:20.622  INFO 13712 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:30:20.623  INFO 13712 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:30:20.624  INFO 13712 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
