@@ -20,7 +20,7 @@ public class Book {
         this.isbn = bookDto.getIsbn();
         this.title = bookDto.getTitle();
         this.author = bookDto.getAuthor();
-        this.isAvailable = bookDto.getIsAvailable();
+        this.isAvailable = bookDto.isAvailable();
     }
 
     public Book(CreateBookDto createBookDto) {
@@ -28,6 +28,7 @@ public class Book {
         this.isbn = createBookDto.getIsbn();
         this.title = createBookDto.getTitle();
         this.author = createBookDto.getAuthor();
+        System.out.println("createBookDto : " + createBookDto.isAvailable());
         this.isAvailable = createBookDto.isAvailable();
     }
 
@@ -96,6 +97,7 @@ public class Book {
 
         public BookBuilder withIsAvailable(boolean isAvailable) {
             this.isAvailable = isAvailable;
+            System.out.println("BookBuilder : " + isAvailable);
             return this;
         }
 
