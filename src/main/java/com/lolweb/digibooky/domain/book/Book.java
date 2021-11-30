@@ -2,6 +2,8 @@ package com.lolweb.digibooky.domain.book;
 
 import com.fasterxml.jackson.databind.util.ArrayBuilders;
 import com.lolweb.digibooky.domain.author.Author;
+import com.lolweb.digibooky.service.dtos.BookDto;
+import com.lolweb.digibooky.service.dtos.CreateBookDto;
 
 import java.util.UUID;
 
@@ -12,6 +14,23 @@ public class Book {
     private final String title;
     private final Author author;
     private boolean isAvailable;
+
+    public Book(BookDto bookDto) {
+        this.id = UUID.randomUUID();
+        this.isbn = bookDto.getIsbn();
+        this.title = bookDto.getTitle();
+        this.author = bookDto.getAuthor();
+        this.isAvailable = bookDto.isAvailable();
+    }
+
+    public Book(CreateBookDto createBookDto) {
+        this.id = UUID.randomUUID();
+        this.isbn = createBookDto.getIsbn();
+        this.title = createBookDto.getTitle();
+        this.author = createBookDto.getAuthor();
+        System.out.println("createBookDto : " + createBookDto.isAvailable());
+        this.isAvailable = createBookDto.isAvailable();
+    }
 
     public Book(BookBuilder builder) {
         this.id = builder.id;
@@ -78,11 +97,16 @@ public class Book {
 
         public BookBuilder withIsAvailable(boolean isAvailable) {
             this.isAvailable = isAvailable;
+            System.out.println("BookBuilder : " + isAvailable);
             return this;
         }
 
         public Book build() {
             return new Book(this);
         }
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }

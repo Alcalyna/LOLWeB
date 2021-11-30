@@ -7,25 +7,21 @@ import com.lolweb.digibooky.exceptions.*;
 import com.lolweb.digibooky.repository.*;
 import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
 import com.lolweb.digibooky.service.mappers.LoanMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-public class LoanService {
+@Service
+public class BookLoanService {
 
     private LoanRepository loanRepository;
     private BookRepository bookRepository;
     private LoanMapper loanMapper;
 
-    public LoanService(LoanRepository loanRepository, BookRepository bookRepository) {
+    public BookLoanService(LoanRepository loanRepository, BookRepository bookRepository) {
         this.loanRepository = loanRepository;
         this.bookRepository = bookRepository;
         this.loanMapper = new LoanMapper();
-    }
-
-    public BookLoanDto loanBook (Book toLoan, User borrower)  {
-        BookLoan loanToSave = createLoan(toLoan, borrower);
-        loanRepository.getActiveLoans().put(loanToSave.getId(), loanToSave);
-        return loanMapper.mapToLoanDto(loanToSave);
     }
 
     public BookLoan createLoan (Book toLoan, User borrower) throws BookNotInRepositoryException, BookIsNotAvailableException {
@@ -38,5 +34,13 @@ public class LoanService {
 
     public LocalDate calculateDueDate() {
         return LocalDate.now().plusWeeks(3);
+    }
+
+    public LoanRepository getLoanRepository() {
+        return loanRepository;
+    }
+
+    public LoanMapper getLoanMapper() {
+        return loanMapper;
     }
 }

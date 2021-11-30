@@ -1,10 +1,12 @@
 package com.lolweb.digibooky.repository;
 
 import com.lolweb.digibooky.domain.loan.BookLoan;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.UUID;
 
+@Repository
 public class LoanRepository {
 
     private HashMap<UUID, BookLoan> activeLoans;
