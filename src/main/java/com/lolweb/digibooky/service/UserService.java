@@ -1,20 +1,22 @@
 package com.lolweb.digibooky.service;
 
-import com.lolweb.digibooky.domain.user.User;
+import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.dtos.UserDto;
 import com.lolweb.digibooky.service.mappers.UserMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-@Component
+@Service
 public class UserService {
 
-    private final Map<UUID, User> users = new HashMap<>();
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     public void addNewMember(UserDto newMember) {
-        users.put(newMember.getId(), UserMapper.convertDtoToUser(newMember));
+        userRepository.save(userMapper.convertDtoToUser(newMember));
     }
 }

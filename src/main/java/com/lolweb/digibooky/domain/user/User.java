@@ -13,7 +13,7 @@ public class User {
     private final String lastName;
     private final EmailAddress emailAddress;
     private final String inss;
-    private final Role role;
+    private Role role;
     private final Address address;
 
     public User(UserBuilder builder) {
@@ -87,7 +87,7 @@ public class User {
         }
 
         public UserBuilder withRole(Role role) {
-            this.role = role;
+            this.role = Role.MEMBER;
             return this;
         }
 
@@ -123,5 +123,9 @@ public class User {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
