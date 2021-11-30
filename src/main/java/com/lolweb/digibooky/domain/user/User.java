@@ -35,6 +35,7 @@ public class User {
         role = userDto.getRole();
         address = userDto.getAddress();
     }
+
     public enum Role {
         ADMIN,
         LIBRARIAN,

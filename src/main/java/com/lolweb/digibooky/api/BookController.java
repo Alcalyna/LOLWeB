@@ -1,6 +1,5 @@
 package com.lolweb.digibooky.api;
 
-import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.service.BookService;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import org.springframework.http.HttpStatus;
@@ -18,6 +17,7 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getAllBooksInLibrary(){
@@ -28,6 +28,7 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBookById (@PathVariable ("id")UUID id){
         return bookService.getBookById(id);
-
     }
+
+    //PUT -> loan book, consumes a book and a user
 }
