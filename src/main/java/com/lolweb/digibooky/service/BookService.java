@@ -6,6 +6,7 @@ import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
+import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,10 @@ public class BookService {
                 .filter(book -> book.getIsbn().equals(isbn) && book.isAvailable())
                 .collect(Collectors.toList())
                 .get(0);
+    }
+
+    public BookDto addNewBook(CreateBookDto newBook) {
+        Book book = bookMapper.mapCreateBookDtoToBook(newBook);
+        return bookMapper.mapToBookDto(bookRepository.save(book));
     }
 }

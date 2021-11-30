@@ -5,6 +5,7 @@ import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.UpdateBookDto;
 import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
+import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,13 @@ public class BookController {
                         .getBookByIsbn(updateBookDto.getBookIsbn()),
                 userService
                         .getUserRepository().getUserById(updateBookDto.getUserId()));
+    }
+
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookDto registerBook(@RequestBody CreateBookDto newBook) {
+        return bookService.addNewBook(newBook);
+
     }
 }
 

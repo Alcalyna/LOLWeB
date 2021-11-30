@@ -47,7 +47,7 @@ public class BookDto {
         return this;
     }
 
-    public boolean getIsAvailable() {
+    public boolean isAvailable() {
         return isAvailable;
     }
 
