@@ -19,8 +19,17 @@ public class UserController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerMember (@RequestBody UserDto newMember) {
-        userService.addNewMember(newMember);
+        userService.addNewUser(newMember);
         return newMember;
     }
 
+   /*
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto registerLibrarian(@RequestBody  UserDto newLibrarian) {
+        //check if user is an admin
+        newLibrarian.setRole(User.Role.LIBRARIAN);
+        userService.addNewUser(newLibrarian);
+        return newLibrarian;
+    }*/
 }

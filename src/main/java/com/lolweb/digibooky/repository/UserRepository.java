@@ -1,6 +1,7 @@
 package com.lolweb.digibooky.repository;
 
 import com.lolweb.digibooky.domain.book.Book;
+import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.user.User;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,21 @@ import java.util.stream.Collectors;
 @Component
 public class UserRepository {
     private HashMap<UUID, User> users;
+    private User admin;
 
     public UserRepository() {
+
         this.users = new HashMap<>();
+        admin = User.UserBuilder.userBuilder()
+                .withId()
+                .withAddress(null)
+                .withEmailAddress(new EmailAddress("admin", "lolweb.com"))
+                .withInss("959595959577")
+                .withFirstName("Admin")
+                .withLastName("Istrator")
+                .withRole(User.Role.MEMBER)
+                .build();
+        users.put(admin.getId(), admin);
     }
 
     public User save(User user){
@@ -28,5 +41,9 @@ public class UserRepository {
 
     public User getUserById(UUID id) {
         return users.get(id);
+    }
+
+    public User getAdmin() {
+        return admin;
     }
 }

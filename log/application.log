@@ -11,3 +11,168 @@
 2021-11-30 09:46:59.175  INFO 6552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-11-30 09:46:59.177  INFO 6552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2021-11-30 09:54:37.185  WARN 6552 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.lolweb.digibooky.domain.emailaddress.EmailAddress` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('robert@lafrite.be'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `com.lolweb.digibooky.domain.emailaddress.EmailAddress` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('robert@lafrite.be')<LF> at [Source: (PushbackInputStream); line: 4, column: 22] (through reference chain: com.lolweb.digibooky.service.dtos.UserDto["emailAddress"])]
+2021-11-30 13:43:52.621  INFO 14628 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 14628 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 13:43:52.629  INFO 14628 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 13:43:54.361  INFO 14628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 13:43:54.376  INFO 14628 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 13:43:54.380  INFO 14628 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 13:43:54.514  INFO 14628 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 13:43:54.514  INFO 14628 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1798 ms
+2021-11-30 13:43:55.893  INFO 14628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 13:43:55.911  INFO 14628 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 4.491 seconds (JVM running for 8.212)
+2021-11-30 15:22:16.111  INFO 15344 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 15344 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:22:16.114  INFO 15344 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:22:17.431  INFO 15344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 15:22:17.445  INFO 15344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:22:17.446  INFO 15344 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:22:17.565  INFO 15344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:22:17.565  INFO 15344 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1383 ms
+2021-11-30 15:22:17.960  WARN 15344 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerMember(UserDto) mapped.
+2021-11-30 15:22:17.963  INFO 15344 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-11-30 15:22:17.980  INFO 15344 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-11-30 15:22:18.014 ERROR 15344 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerMember(UserDto) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-2.6.0.jar:2.6.0]
+	at com.lolweb.digibooky.DigibookyLolWeBApplication.main(DigibookyLolWeBApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerMember(UserDto) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:635) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:332) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:395) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:299) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:297) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:266) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:225) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:213) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:206) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.13.jar:5.3.13]
+	... 16 common frames omitted
+
+2021-11-30 15:23:37.244  INFO 9780 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 9780 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:23:37.251  INFO 9780 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:23:38.690  INFO 9780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-30 15:23:38.700  INFO 9780 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:23:38.701  INFO 9780 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:23:38.813  INFO 9780 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:23:38.815  INFO 9780 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1437 ms
+2021-11-30 15:23:40.024  INFO 9780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-30 15:23:40.036  INFO 9780 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 3.667 seconds (JVM running for 5.507)
+2021-11-30 15:24:40.043  INFO 9780 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 15:24:40.043  INFO 9780 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 15:24:40.044  INFO 9780 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-30 15:24:40.065  WARN 9780 --- [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'VIEW' not supported]
+2021-11-30 15:25:14.982  INFO 2784 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 2784 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:25:14.987  INFO 2784 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:25:16.225  INFO 2784 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 15:25:16.248  INFO 2784 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:25:16.249  INFO 2784 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:25:16.346  INFO 2784 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:25:16.347  INFO 2784 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1266 ms
+2021-11-30 15:25:17.650  INFO 2784 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4040 (http) with context path ''
+2021-11-30 15:25:17.664  INFO 2784 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 3.304 seconds (JVM running for 4.735)
+2021-11-30 15:44:31.893  INFO 9304 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 9304 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:44:31.897  INFO 9304 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:44:33.133  INFO 9304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 15:44:33.155  INFO 9304 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:44:33.156  INFO 9304 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:44:33.247  INFO 9304 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:44:33.248  INFO 9304 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1288 ms
+2021-11-30 15:44:34.264  INFO 9304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4040 (http) with context path ''
+2021-11-30 15:44:34.279  INFO 9304 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 3.029 seconds (JVM running for 4.207)
+2021-11-30 15:48:20.882  INFO 1200 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 1200 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:48:20.886  INFO 1200 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:48:22.180  INFO 1200 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 15:48:22.193  INFO 1200 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:48:22.194  INFO 1200 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:48:22.323  INFO 1200 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:48:22.324  INFO 1200 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1362 ms
+2021-11-30 15:48:22.649  WARN 1200 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerMember(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto) mapped.
+2021-11-30 15:48:22.653  INFO 1200 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-11-30 15:48:22.670  INFO 1200 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-11-30 15:48:22.705 ERROR 1200 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerMember(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.0.jar:2.6.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-2.6.0.jar:2.6.0]
+	at com.lolweb.digibooky.DigibookyLolWeBApplication.main(DigibookyLolWeBApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.lolweb.digibooky.api.UserController#registerMember(UserDto)
+to {POST [/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.lolweb.digibooky.api.UserController#registerLibrarian(UserDto) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:635) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:332) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:395) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:299) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:297) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:266) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:225) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:213) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:206) ~[spring-webmvc-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.13.jar:5.3.13]
+	... 16 common frames omitted
+
+2021-11-30 15:49:19.199  INFO 11040 --- [main] c.l.d.DigibookyLolWeBApplication         : Starting DigibookyLolWeBApplication using Java 17 on LAPTOP-8D17I446 with PID 11040 (C:\_development\LOLWeB\target\classes started by Daniel in C:\_development\LOLWeB)
+2021-11-30 15:49:19.203  INFO 11040 --- [main] c.l.d.DigibookyLolWeBApplication         : No active profile set, falling back to default profiles: default
+2021-11-30 15:49:20.649  INFO 11040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 15:49:20.659  INFO 11040 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 15:49:20.660  INFO 11040 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 15:49:20.779  INFO 11040 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 15:49:20.780  INFO 11040 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1437 ms
+2021-11-30 15:49:22.066  INFO 11040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4040 (http) with context path ''
+2021-11-30 15:49:22.108  INFO 11040 --- [main] c.l.d.DigibookyLolWeBApplication         : Started DigibookyLolWeBApplication in 3.726 seconds (JVM running for 5.811)
