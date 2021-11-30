@@ -1,6 +1,6 @@
 package com.lolweb.digibooky.service;
 
-import com.lolweb.digibooky.domain.BookRepository;
+import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;

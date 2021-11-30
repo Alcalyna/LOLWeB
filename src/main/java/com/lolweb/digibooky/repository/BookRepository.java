@@ -1,4 +1,4 @@
-package com.lolweb.digibooky.domain;
+package com.lolweb.digibooky.repository;
 
 import com.lolweb.digibooky.domain.book.Book;
 import org.springframework.stereotype.Component;
