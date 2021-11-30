@@ -927,3 +927,15 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'se
 2021-11-30 14:22:50.169  INFO 21004 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-11-30 14:22:50.170  INFO 21004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-11-30 14:22:50.172  INFO 21004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-11-30 14:30:13.831  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : Starting BookControllerIntegrationTest using Java 17 on CND6126YTS with PID 13712 (started by lnguyea in C:\_development\switchfully\LOLWeB)
+2021-11-30 14:30:13.834  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : No active profile set, falling back to default profiles: default
+2021-11-30 14:30:15.761  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 4040 (http)
+2021-11-30 14:30:15.783  INFO 13712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-30 14:30:15.784  INFO 13712 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-11-30 14:30:15.974  INFO 13712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-30 14:30:15.974  INFO 13712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1768 ms
+2021-11-30 14:30:18.287  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 4040 (http) with context path ''
+2021-11-30 14:30:18.301  INFO 13712 --- [main] c.l.d.w.BookControllerIntegrationTest    : Started BookControllerIntegrationTest in 5.009 seconds (JVM running for 6.477)
+2021-11-30 14:30:20.622  INFO 13712 --- [http-nio-4040-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-30 14:30:20.623  INFO 13712 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-30 14:30:20.624  INFO 13712 --- [http-nio-4040-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
