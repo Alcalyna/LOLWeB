@@ -8,21 +8,21 @@ import java.util.UUID;
 
 public class UserDto {
 
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private EmailAddress emailAddress;
+    private final UUID id;
+    private final String firstName;
+    private final String lastName;
+    private final EmailAddress emailAddress;
     private String inss;
     private User.Role role;
     private Address address;
 
-    public UserDto(String firstName, String lastName, EmailAddress emailAddress, String inss, User.Role role, Address address) {
+    public UserDto(String firstName, String lastName, EmailAddress emailAddress, String inss, Address address) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.inss = inss;
-        this.role = role;
+        this.role = User.Role.MEMBER;
         this.address = address;
     }
 
@@ -31,6 +31,8 @@ public class UserDto {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.emailAddress = user.getEmailAddress();
+        this.role = user.getRole();
+        this.address = user.getAddress();
     }
 
     public UUID getId() {
@@ -60,4 +62,6 @@ public class UserDto {
     public User.Role getRole() {
         return role;
     }
+
+    public void setRole(User.Role role) { this.role = role; }
 }
