@@ -16,6 +16,16 @@ public class BookRepository {
     public BookRepository() {
     }
 
+/*    public static Book getBookByIsbn(String isbn) {
+        return booksInLibrary
+                .values()
+                .stream()
+                .filter(book -> book.getIsbn().equals(isbn))
+                .limit(1)
+                .collect(Collectors.toList())
+                .get(0);
+    }*/
+
     public Book save(Book book){
         booksInLibrary.put(book.getId(),book);
         return book;

@@ -14,11 +14,10 @@ import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;
 import com.lolweb.digibooky.service.mappers.UserMapper;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -167,7 +166,7 @@ public class BookControllerTest {
         }
 
         @Test
-        void givenAdmin_WhenRegistersNewBook_RegisterBookIsAutorized () {
+        void givenAdmin_WhenRegistersNewBook_RegisterBookIsAutorized() {
             //GIVEN
             Author author = new Author("Lulinh", "Juniel");
             CreateBookDto createBookDto = new CreateBookDto()

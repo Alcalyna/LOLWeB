@@ -40,6 +40,13 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
+/*    @GetMapping(produces = "application/json", path = "/{isbn}")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto getBookByIsbn(@PathVariable("isbn") String isbn) {
+
+        return bookService.getBookByIsbn(isbn);
+    }*/
+
     //PUT -> loan book, consumes a book and a user
     @PutMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
