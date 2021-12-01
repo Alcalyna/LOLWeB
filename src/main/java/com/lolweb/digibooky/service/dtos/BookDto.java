@@ -2,6 +2,7 @@ package com.lolweb.digibooky.service.dtos;
 
 import com.lolweb.digibooky.domain.author.Author;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class BookDto {
@@ -10,6 +11,7 @@ public class BookDto {
     private String title;
     private Author author;
     private boolean isAvailable;
+    private String summary;
 
     public UUID getId() {
         return id;
@@ -47,6 +49,15 @@ public class BookDto {
         return this;
     }
 
+
+    public String getSummary() { return summary;
+    }
+
+    public BookDto setSummary(String summary) {
+        this.summary = summary;
+        return this;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -54,5 +65,18 @@ public class BookDto {
     public BookDto setAvailable(boolean available) {
         this.isAvailable = available;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookDto bookDto = (BookDto) o;
+        return isAvailable == bookDto.isAvailable && Objects.equals(id, bookDto.id) && Objects.equals(isbn, bookDto.isbn) && Objects.equals(title, bookDto.title) && Objects.equals(author, bookDto.author) && Objects.equals(summary, bookDto.summary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, isbn, title, author, isAvailable, summary);
     }
 }

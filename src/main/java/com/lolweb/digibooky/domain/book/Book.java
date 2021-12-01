@@ -4,6 +4,7 @@ import com.lolweb.digibooky.domain.author.Author;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Book {
@@ -12,6 +13,7 @@ public class Book {
     private final String isbn;
     private final String title;
     private final Author author;
+    private final String summary;
     private boolean isAvailable;
 
     public Book(BookDto bookDto) {
@@ -19,6 +21,7 @@ public class Book {
         this.isbn = bookDto.getIsbn();
         this.title = bookDto.getTitle();
         this.author = bookDto.getAuthor();
+        this.summary = bookDto.getSummary();
         this.isAvailable = bookDto.isAvailable();
     }
 
@@ -27,6 +30,7 @@ public class Book {
         this.isbn = createBookDto.getIsbn();
         this.title = createBookDto.getTitle();
         this.author = createBookDto.getAuthor();
+        this.summary = createBookDto.getSummary();
         this.isAvailable = createBookDto.isAvailable();
     }
 
@@ -35,6 +39,7 @@ public class Book {
         this.isbn = builder.isbn;
         this.title = builder.title;
         this.author = builder.author;
+        this.summary = builder.summary;
         this.isAvailable = builder.isAvailable;
     }
 
@@ -54,6 +59,10 @@ public class Book {
         return author;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -64,6 +73,7 @@ public class Book {
         private String isbn;
         private String title;
         private Author author;
+        private String summary;
         private boolean isAvailable;
 
         private BookBuilder() {
@@ -98,6 +108,11 @@ public class Book {
             return this;
         }
 
+        public BookBuilder withSummary(String summary) {
+            this.summary = summary;
+            return this;
+        }
+
         public Book build() {
             return new Book(this);
         }
@@ -105,5 +120,29 @@ public class Book {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return isAvailable == book.isAvailable && Objects.equals(id, book.id) && Objects.equals(isbn, book.isbn) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(summary, book.summary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, isbn, title, author, summary, isAvailable);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", isAvailable=" + isAvailable +
+                '}';
     }
 }
