@@ -111,7 +111,7 @@ public class BookControllerTest {
         }
 
         @Test
-        void givenLibrarian_WhenRegisterNewBook_RegistersBookIsAuthorized() {
+        void givenLibrarian_WhenRegistersNewBook_RegisterBookIsAuthorized() {
             //GIVEN
             Author author = new Author("Lulinh", "Juniel");
             CreateBookDto createBookDto = new CreateBookDto()
@@ -146,7 +146,7 @@ public class BookControllerTest {
         }
 
         @Test
-        void givenUserNotLibrarian_WhenRegisterNewBook_ReturnsIsNotAuthorized() {
+        void givenUserNotLibrarian_WhenRegistersNewBook_ReturnsIsNotAuthorized() {
             //GIVEN
             Author author = new Author("Lulinh", "Juniel");
             CreateBookDto createBookDto = new CreateBookDto()
@@ -164,6 +164,28 @@ public class BookControllerTest {
             //THEN
             org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
                     .hasMessage("Not allowed to");
+        }
+
+        @Test
+        void givenAdmin_WhenRegistersNewBook_RegisterBookIsAutorized () {
+            //GIVEN
+            Author author = new Author("Lulinh", "Juniel");
+            CreateBookDto createBookDto = new CreateBookDto()
+                    .setIsbn("123456789000000")
+                    .setAuthor(author)
+                    .setTitle("LOLWeB")
+                    .setSummary("hahahhahahahahahaha")
+                    .setAvailable(true);
+
+            UserRepository.initUsers();
+
+
+            //WHEN
+            bookController.registerBook(createBookDto, "Basic YWRtaW5AbG9sd2ViLmNvbTphZG1pbg==");
+            BookDto actual = bookController.getAllBooksInLibrary().get(0);
+
+            //THEN
+            assertThat(bookService.getAllBooksInLibrary()).contains(actual);
         }
     }
 
