@@ -46,4 +46,10 @@ public class UserRepository {
     public User getAdmin() {
         return admin;
     }
+
+    public User getUser(String email) {
+        return users.values().stream()
+                .filter(user -> user.getEmailAddress().toString().equals(email))
+                .findFirst().orElse(null);
+    }
 }

@@ -2,8 +2,11 @@ package com.lolweb.digibooky.domain.user;
 
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
+import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.dtos.UserDto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class User {
@@ -12,15 +15,28 @@ public class User {
     private final String firstName;
     private final String lastName;
     private final EmailAddress emailAddress;
+    private String password;
     private final String inss;
     private Role role;
     private final Address address;
+
+    public User(String firstName, String lastName, EmailAddress emailAddress, String password, String inss, Role role, Address address) {
+        this.id = UUID.randomUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.inss = inss;
+        this.role = role;
+        this.address = address;
+    }
 
     public User(UserBuilder builder) {
         id = builder.id;
         firstName = builder.firstName;
         lastName = builder.lastName;
         emailAddress = builder.emailAddress;
+        password = builder.password;
         inss = builder.inss;
         role = builder.role;
         address = builder.address;
@@ -37,16 +53,28 @@ public class User {
     }
 
     public enum Role {
-        ADMIN,
-        LIBRARIAN,
-        MEMBER
+        ADMIN(List.of(Feature.REGISTER_LIBRARIAN)),
+        LIBRARIAN(new ArrayList<>()),
+        MEMBER(new ArrayList<>());
+
+        private List<Feature> featureList;
+
+        Role(List<Feature> featureList) {
+            this.featureList = featureList;
+        }
+
+        public boolean containFeature(Feature feature){
+            return featureList.contains(feature);
+        }
     }
+
 
     public static final class UserBuilder {
         private UUID id;
         private String firstName;
         private String lastName;
         private EmailAddress emailAddress;
+        private String password;
         private String inss;
         private Role role;
         private Address address;
@@ -96,6 +124,11 @@ public class User {
             this.address = address;
             return this;
         }
+
+        public UserBuilder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
     }
 
     public UUID getId() {
@@ -126,8 +159,16 @@ public class User {
         return address;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean hasAccessTo(Feature feature){
+        return this.role.containFeature(feature);
     }
 
 }

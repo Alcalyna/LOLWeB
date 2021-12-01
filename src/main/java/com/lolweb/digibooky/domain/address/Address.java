@@ -9,6 +9,12 @@ public class Address {
     private final String postCode; //need to validate
     private final String city;
 
+    public Address(String streetName, String streetNumber, String postCode, String city) {
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.postCode = postCode;
+        this.city = city;
+    }
 
     public Address (AddressBuilder builder) {
         streetName = builder.streetName;
