@@ -27,6 +27,7 @@ public class BookControllerIntegrationTest {
                 .setIsbn("123456789000000")
                 .setAuthor(author)
                 .setTitle("LOLWeB")
+                .setSummary("hahahhahahahahahaha")
                 .setAvailable(true);
 
         // WHEN
@@ -49,9 +50,8 @@ public class BookControllerIntegrationTest {
         Assertions.assertEquals("LOLWeB", bookDto.getTitle());
         Assertions.assertEquals("Lulinh", bookDto.getAuthor().getFirstName());
         Assertions.assertEquals("Juniel", bookDto.getAuthor().getLastName());
+        Assertions.assertEquals("hahahhahahahahahaha", bookDto.getSummary());
         Assertions.assertEquals("123456789000000",bookDto.getIsbn());
         Assertions.assertTrue(bookDto.isAvailable());
     }
-
-
 }

@@ -7,6 +7,7 @@ public class CreateBookDto {
     private String title;
     private Author author;
     private boolean isAvailable;
+    private String summary;
 
     public String getIsbn() {
         return isbn;
@@ -18,6 +19,9 @@ public class CreateBookDto {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public String getSummary() { return summary;
     }
 
     public boolean isAvailable() {
@@ -39,8 +43,15 @@ public class CreateBookDto {
         return this;
     }
 
+    public CreateBookDto setSummary(String summary) {
+        this.summary = summary;
+        return this;
+    }
+
     public CreateBookDto setAvailable(boolean available) {
         isAvailable = available;
         return this;
     }
+
+
 }

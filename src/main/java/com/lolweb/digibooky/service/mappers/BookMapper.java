@@ -16,12 +16,13 @@ public class BookMapper {
                 .setIsbn(book.getIsbn())
                 .setTitle(book.getTitle())
                 .setAuthor(book.getAuthor())
+                .setSummary(book.getSummary())
                 .setAvailable(book.isAvailable());
     }
-
+/*
     public Book mapDtoToBook(BookDto bookDto) {
         return new Book(bookDto);
-    }
+    }*/
 
     public Book mapCreateBookDtoToBook(CreateBookDto createBookDto) {
         return new Book(createBookDto);
@@ -31,6 +32,7 @@ public class BookMapper {
         return BookBuilder
                 .bookBuilder()
                 .withAuthor(createBookDto.getAuthor())
+                .withSummary(createBookDto.getSummary())
                 .withIsbn(createBookDto.getIsbn())
                 .withTitle(createBookDto.getTitle())
                 .withIsAvailable(createBookDto.isAvailable())
