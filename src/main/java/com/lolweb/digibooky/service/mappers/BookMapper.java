@@ -19,18 +19,12 @@ public class BookMapper {
                 .setSummary(book.getSummary())
                 .setAvailable(book.isAvailable());
     }
-/*
-    public Book mapDtoToBook(BookDto bookDto) {
-        return new Book(bookDto);
-    }*/
+
 
     public Book mapCreateBookDtoToBook(CreateBookDto createBookDto) {
-        return new Book(createBookDto);
-    }
-
-    public Book mapToBook(CreateBookDto createBookDto) {
         return BookBuilder
                 .bookBuilder()
+                .withId()
                 .withAuthor(createBookDto.getAuthor())
                 .withSummary(createBookDto.getSummary())
                 .withIsbn(createBookDto.getIsbn())

@@ -4,6 +4,7 @@ package com.lolweb.digibooky.service;
 
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.domain.user.User;
+import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class SecurityService {
         }
         if(!user.hasAccessTo(feature)){
             // custom exception needed
-            throw new IllegalArgumentException("Not allowed to");
+            throw new UserNotAuthorizedException("Not allowed to");
         }
     }
 

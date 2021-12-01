@@ -1,8 +1,6 @@
 package com.lolweb.digibooky.domain.book;
 
 import com.lolweb.digibooky.domain.author.Author;
-import com.lolweb.digibooky.service.dtos.BookDto;
-import com.lolweb.digibooky.service.dtos.CreateBookDto;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -15,33 +13,6 @@ public class Book {
     private final Author author;
     private final String summary;
     private boolean isAvailable;
-
-    public Book(String isbn, String title, Author author, String summary, boolean isAvailable) {
-        this.id = UUID.randomUUID();
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.summary = summary;
-        this.isAvailable = isAvailable;
-    }
-
-    public Book(BookDto bookDto) {
-        this.id = UUID.randomUUID();
-        this.isbn = bookDto.getIsbn();
-        this.title = bookDto.getTitle();
-        this.author = bookDto.getAuthor();
-        this.summary = bookDto.getSummary();
-        this.isAvailable = bookDto.isAvailable();
-    }
-
-    public Book(CreateBookDto createBookDto) {
-        this.id = UUID.randomUUID();
-        this.isbn = createBookDto.getIsbn();
-        this.title = createBookDto.getTitle();
-        this.author = createBookDto.getAuthor();
-        this.summary = createBookDto.getSummary();
-        this.isAvailable = createBookDto.isAvailable();
-    }
 
     public Book(BookBuilder builder) {
         this.id = builder.id;
