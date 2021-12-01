@@ -7,6 +7,7 @@ import com.lolweb.digibooky.service.dtos.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class User {
@@ -43,7 +44,7 @@ public class User {
 
     public enum Role {
         ADMIN(List.of(Feature.REGISTER_LIBRARIAN)),
-        LIBRARIAN(new ArrayList<>()),
+        LIBRARIAN(List.of(Feature.REGISTER_BOOK)),
         MEMBER(new ArrayList<>());
 
         private List<Feature> featureList;
@@ -52,8 +53,12 @@ public class User {
             this.featureList = featureList;
         }
 
-        public boolean containFeature(Feature feature){
+        public boolean containsFeature(Feature feature){
             return featureList.contains(feature);
+        }
+
+        public List<Feature> getFeatureList() {
+            return featureList;
         }
     }
 
@@ -105,7 +110,7 @@ public class User {
         }
 
         public UserBuilder withRole(Role role) {
-            this.role = Role.MEMBER;
+            this.role = role;
             return this;
         }
 
@@ -157,7 +162,24 @@ public class User {
     }
 
     public boolean hasAccessTo(Feature feature){
-        return this.role.containFeature(feature);
+        System.out.println(this);
+        System.out.println(this.getRole());
+        for(Feature f : this.role.getFeatureList()) {
+            System.out.println(f);
+        }
+        return this.role.containsFeature(feature);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

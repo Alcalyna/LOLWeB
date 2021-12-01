@@ -14,6 +14,14 @@ public class Book {
     private final Author author;
     private boolean isAvailable;
 
+    public Book(String isbn, String title, Author author, boolean isAvailable) {
+        this.id = UUID.randomUUID();
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.isAvailable = isAvailable;
+    }
+
     public Book(BookDto bookDto) {
         this.id = UUID.randomUUID();
         this.isbn = bookDto.getIsbn();

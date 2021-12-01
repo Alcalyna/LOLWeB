@@ -1,5 +1,6 @@
 package com.lolweb.digibooky.repository;
 
+import com.lolweb.digibooky.domain.author.Author;
 import com.lolweb.digibooky.domain.book.Book;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +11,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class BookRepository {
-    private HashMap<UUID, Book> booksInLibrary;
+    public final static HashMap<UUID, Book> booksInLibrary = new HashMap<>();
 
     public BookRepository() {
-        this.booksInLibrary = new HashMap<>();
     }
 
     public Book save(Book book){
@@ -29,4 +29,14 @@ public class BookRepository {
         return booksInLibrary.get(id);
     }
 
+    public static void initBooks() {
+        Book newBook = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Dalinh", "Luniel"))
+                .withIsAvailable(true)
+                .withIsbn("1234567894564")
+                .withTitle("LOLWeB is the best group")
+                .build();
+        booksInLibrary.put(newBook.getId(), newBook);
+    }
 }

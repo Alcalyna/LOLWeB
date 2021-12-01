@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerMember (@RequestBody UserDto newMember) {
-        userService.addNewUser(newMember);
+        userService.addNewMember(newMember);
         return newMember;
     }
 
@@ -32,9 +32,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerLibrarian(@RequestBody  UserDto newLibrarian, @RequestHeader String authorization) {
         securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
-        newLibrarian.setRole(User.Role.LIBRARIAN);
-        userService.addNewUser(newLibrarian);
-        System.out.println(newLibrarian);
+        userService.addNewLibrarian(newLibrarian);
         return newLibrarian;
     }
 }

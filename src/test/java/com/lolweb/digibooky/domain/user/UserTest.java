@@ -2,6 +2,7 @@ package com.lolweb.digibooky.domain.user;
 
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
+import com.lolweb.digibooky.domain.feature.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,8 +35,9 @@ class UserTest {
                 .withInss("959595959595")
                 .withFirstName("Rutim")
                 .withLastName("Luniel")
-                .withRole(User.Role.MEMBER)
+                .withRole(User.Role.ADMIN)
                 .build();
+        System.out.println(user.getRole());
 
         Address expectedAddress = Address.AddressBuilder.addressBuilder()
                 .withStreetName("LolWeb street")
@@ -52,6 +54,6 @@ class UserTest {
         Assertions.assertEquals("959595959595", user.getInss());
         Assertions.assertEquals("Rutim", user.getFirstName());
         Assertions.assertEquals("Luniel", user.getLastName());
-        Assertions.assertEquals(User.Role.MEMBER, user.getRole());
+        Assertions.assertEquals(User.Role.ADMIN, user.getRole());
     }
 }

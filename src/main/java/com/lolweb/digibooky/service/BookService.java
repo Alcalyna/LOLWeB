@@ -56,7 +56,8 @@ public class BookService {
 
     public BookDto addNewBook(CreateBookDto newBook) {
         Book book = bookMapper.mapCreateBookDtoToBook(newBook);
-        return bookMapper.mapToBookDto(bookRepository.save(book));
+        BookRepository.booksInLibrary.put(book.getId(), book);
+        return bookMapper.mapToBookDto(book);
     }
 
 }

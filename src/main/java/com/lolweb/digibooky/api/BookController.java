@@ -1,6 +1,8 @@
 package com.lolweb.digibooky.api;
 
+import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.BookService;
+import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.UpdateBookDto;
@@ -18,10 +20,12 @@ public class BookController {
 
     private BookService bookService;
     private UserService userService;
+    private final SecurityService securityService;
 
-    public BookController(BookService bookService, UserService userService) {
+    public BookController(BookService bookService, UserService userService, SecurityService securityService) {
         this.bookService = bookService;
         this.userService = userService;
+        this.securityService = securityService;
     }
 
     @GetMapping(produces = "application/json")
@@ -50,9 +54,9 @@ public class BookController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto registerBook(@RequestBody CreateBookDto newBook) {
+    public BookDto registerBook(@RequestBody CreateBookDto newBook, @RequestHeader String authorization) {
+        securityService.validateAccess(authorization, Feature.REGISTER_BOOK);
         return bookService.addNewBook(newBook);
-
     }
 }
 
