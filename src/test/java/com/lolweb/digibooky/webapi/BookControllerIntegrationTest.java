@@ -1,9 +1,11 @@
 package com.lolweb.digibooky.webapi;
 
 import com.lolweb.digibooky.domain.author.Author;
+import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,9 +32,12 @@ public class BookControllerIntegrationTest {
                 .setSummary("hahahhahahahahahaha")
                 .setAvailable(true);
 
+        UserRepository.initUsers();
+
         // WHEN
         BookDto bookDto = RestAssured
                 .given()
+                .header("authorization", "Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu")
                 .body(createBookDto)
                 .accept(JSON)
                 .contentType(JSON)

@@ -31,7 +31,7 @@ public class BookService {
     }
 
     public BookDto getBookById(UUID id) {
-        Book bookToReturn = bookRepository.getBookById(id);
+        Book bookToReturn = BookRepository.getBookById(id);
         return bookMapper.mapToBookDto(bookToReturn);
     }
 

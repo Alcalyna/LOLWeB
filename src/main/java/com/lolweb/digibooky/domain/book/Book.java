@@ -16,11 +16,12 @@ public class Book {
     private final String summary;
     private boolean isAvailable;
 
-    public Book(String isbn, String title, Author author, boolean isAvailable) {
+    public Book(String isbn, String title, Author author, String summary, boolean isAvailable) {
         this.id = UUID.randomUUID();
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+        this.summary = summary;
         this.isAvailable = isAvailable;
     }
 

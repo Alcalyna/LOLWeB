@@ -34,7 +34,7 @@ public class BookController {
         return bookService.getAllBooksInLibrary();
     }
 
-    @GetMapping(produces = "application/json", path = "/id")
+    @GetMapping(produces = "application/json", path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBookById(@PathVariable("id") UUID id) {
         return bookService.getBookById(id);

@@ -37,7 +37,7 @@ class UserControllerTest {
     @Test
     void GivenUser_WhenRegisteredAsAMember_Then_NewMemberAdded() {
         userController.registerMember(userMapper.convertUserToDto(member));
-        assertTrue(userRepository.getAll().size() > 1);
+        assertTrue(UserRepository.getAll().contains(member));
     }
 
     @Test

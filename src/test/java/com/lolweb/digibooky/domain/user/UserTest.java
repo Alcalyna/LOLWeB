@@ -37,7 +37,6 @@ class UserTest {
                 .withLastName("Luniel")
                 .withRole(User.Role.ADMIN)
                 .build();
-        System.out.println(user.getRole());
 
         Address expectedAddress = Address.AddressBuilder.addressBuilder()
                 .withStreetName("LolWeb street")

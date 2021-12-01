@@ -7,6 +7,7 @@ import com.lolweb.digibooky.repository.LoanRepository;
 import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.BookLoanService;
 import com.lolweb.digibooky.service.BookService;
+import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;
@@ -31,6 +32,7 @@ public class BookControllerTest {
     private UserRepository userRepository;
     private UserMapper userMapper;
     private UserService userService;
+    private SecurityService securityService;
     private BookController bookController;
     private Author author;
     private Book book1;
@@ -47,7 +49,8 @@ public class BookControllerTest {
         userRepository = new UserRepository();
         userMapper = new UserMapper();
         userService = new UserService(userRepository, userMapper);
-        bookController = new BookController(bookService, userService);
+        securityService = new SecurityService(userRepository);
+        bookController = new BookController(bookService, userService, securityService);
         author = new Author("Tim", "Le Massart");
         book1 = Book.BookBuilder.bookBuilder()
                 .withAuthor(author)
@@ -92,6 +95,7 @@ public class BookControllerTest {
     void givenSeveralBooks_whenGetAllBooks_ReturnsAllBooks() {
         //GIVEN
         //WHEN
+
         List<BookDto> actual = bookController
                 .getAllBooksInLibrary()
                 .stream()
@@ -99,9 +103,8 @@ public class BookControllerTest {
 
         List <BookDto> expected = List.of(mapper.mapToBookDto(book1), mapper.mapToBookDto(book2), mapper.mapToBookDto(book3));
 
-
         //THEN
-        assertThat(expected).contains(actual.get(0), actual.get(1), actual.get(2));
+        assertThat(actual).containsAll(expected);
     }
 
     @Test
