@@ -1,10 +1,16 @@
 package com.lolweb.digibooky.domain.emailaddress;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Objects;
 
+@JsonSerialize
 public class EmailAddress {
 
+    @JsonProperty("username")
     private final String username;
+    @JsonProperty("domain")
     private final String domain;
 
     public EmailAddress(String username, String domain) {

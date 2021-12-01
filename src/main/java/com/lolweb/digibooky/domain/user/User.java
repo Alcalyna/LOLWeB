@@ -20,17 +20,6 @@ public class User {
     private Role role;
     private final Address address;
 
-    public User(String firstName, String lastName, EmailAddress emailAddress, String password, String inss, Role role, Address address) {
-        this.id = UUID.randomUUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.password = password;
-        this.inss = inss;
-        this.role = role;
-        this.address = address;
-    }
-
     public User(UserBuilder builder) {
         id = builder.id;
         firstName = builder.firstName;

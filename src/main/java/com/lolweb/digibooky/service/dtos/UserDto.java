@@ -1,11 +1,13 @@
 package com.lolweb.digibooky.service.dtos;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.user.User;
 
 import java.util.UUID;
 
+@JsonSerialize
 public class UserDto {
 
     private final UUID id;
@@ -15,7 +17,7 @@ public class UserDto {
     private String password;
     private String inss;
     private User.Role role;
-    private Address address;
+    private final Address address;
 
     public UserDto(String firstName, String lastName, EmailAddress emailAddress, String password, String inss, Address address) {
         this.id = UUID.randomUUID();
