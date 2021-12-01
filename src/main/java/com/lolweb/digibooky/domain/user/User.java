@@ -16,6 +16,7 @@ public class User {
     private Role role;
     private final Address address;
 
+
     public User(UserBuilder builder) {
         id = builder.id;
         firstName = builder.firstName;
