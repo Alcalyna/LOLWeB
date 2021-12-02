@@ -68,19 +68,61 @@ public class BookRepository {
                 .withTitle("Group by")
                 .build();
         booksInLibrary.put(book2.getId(), book2);
-    }
 
-//    public List<Book> getBookByTitle(String title){
-//        title.toLowerCase();
-//        List<Book> books = new ArrayList<>();
-//        for(Book book: this.getAll()) {
-//            String titleBook = book.getTitle().toLowerCase();
-//            if(titleBook.contains(title)) {
-//                books.add(book);
-//            }
-//        }
-//        return books;
-//    }
+        Book book3 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Marcel", "Proust"))
+                .withIsAvailable(true)
+                .withIsbn("9780812969641")
+                .withTitle("In Search of Lost Time")
+                .build();
+        booksInLibrary.put(book3.getId(), book3);
+
+        Book book4 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Jarod", "Rosello"))
+                .withIsAvailable(true)
+                .withIsbn("9781603094443")
+                .withTitle("Red Panda & Moon Bear")
+                .build();
+        booksInLibrary.put(book4.getId(), book4);
+
+        Book book5 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Joanne", "Rowling"))
+                .withIsAvailable(true)
+                .withIsbn("9780747546290")
+                .withTitle("Harry Potter and The Prisoner of Azkaban")
+                .build();
+        booksInLibrary.put(book5.getId(), book5);
+
+        Book book6 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Joanne", "Rowling"))
+                .withIsAvailable(true)
+                .withIsbn("9780747581109")
+                .withTitle("Harry Potter and The Half-Blood Prince")
+                .build();
+        booksInLibrary.put(book6.getId(), book6);
+
+        Book book7 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Joanne", "Rowling"))
+                .withIsAvailable(true)
+                .withIsbn("9780747581109")
+                .withTitle("Harry Potter and The Half-Blood Prince")
+                .build();
+        booksInLibrary.put(book7.getId(), book7);
+
+        Book book8 = Book.BookBuilder.bookBuilder()
+                .withId()
+                .withAuthor(new Author("Joanne", "Rowling"))
+                .withIsAvailable(true)
+                .withIsbn("9780747581109")
+                .withTitle("Harry Potter and The Half-Blood Prince")
+                .build();
+        booksInLibrary.put(book8.getId(), book8);
+    }
 
     public List<Book> getBookByAuthor(String authorName) {
         List<Book> books = this.getAll();

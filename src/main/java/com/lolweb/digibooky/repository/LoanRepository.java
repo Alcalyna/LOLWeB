@@ -12,6 +12,9 @@ public class LoanRepository {
     private final Map<UUID, BookLoan> activeLoans = new HashMap<>();
     private final Map<UUID, UUID> bookMemberMap = new HashMap<>();
 
+    public LoanRepository() {
+    }
+
     public List<BookLoan> getAll() {
         return activeLoans.values().stream().collect(Collectors.toList());
     }
@@ -21,8 +24,8 @@ public class LoanRepository {
         return bookLoan;
     }
 
-    public void saveBookMemberMap(UUID bookId, UUID membreID) {
-        bookMemberMap.put(bookId, membreID);
+    public void saveBookMemberMap(UUID bookId, UUID membreId) {
+        bookMemberMap.put(bookId, membreId);
     }
 
     public List<UUID> getAllLentBooksByMember(UUID memberId) {
@@ -34,4 +37,5 @@ public class LoanRepository {
         }
         return listOfBooks;
     }
+
 }
