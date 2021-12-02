@@ -81,7 +81,7 @@ public class BookLoanService {
         if(memberId != bookLoan.getBorrowerId()){
             throw new IllegalArgumentException("member's id does not match");
         }
-        if(bookLoan.getDueDate().isAfter(LocalDate.now())){
+        if(bookLoan.getDueDate().isBefore(LocalDate.now())){
             System.out.println("Book has been returned late");
         }
         Book returningBook = bookRepository.getBookByIsbn(bookLoan.getBorrowedBookIsbn());
