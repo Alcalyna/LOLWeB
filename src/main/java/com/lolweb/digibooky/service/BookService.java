@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public class BookService {
     }
 
     public List<Book> getBookByTitle(String title) {
-        title.toLowerCase();
+        title = title.toLowerCase();
         List<Book> books = new ArrayList<>();
         for (Book book : bookRepository.getAll()) {
             String titleBook = book.getTitle().toLowerCase();
@@ -47,7 +48,6 @@ public class BookService {
         return this.getBookByTitle(title).stream()
                     .map(book -> BookMapper.mapToBookDto(book))
                     .collect(Collectors.toList());
-
     }
 
 
