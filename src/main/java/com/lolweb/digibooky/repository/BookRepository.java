@@ -35,6 +35,8 @@ public class BookRepository {
         return booksInLibrary.get(id);
     }
 
+    public Book getBookByIsbn(String isbn) { return booksInLibrary.get(isbn);}
+
     public List<Book> getAllByIsbn(String isbn) {
         return booksInLibrary.values().stream()
                 .filter(book -> book.getIsbn().equals(isbn))

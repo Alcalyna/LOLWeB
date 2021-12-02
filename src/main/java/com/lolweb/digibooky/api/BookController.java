@@ -41,15 +41,22 @@ public class BookController {
 
     @GetMapping(params = "title")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> bookByTitle(@RequestParam String title) {
+    public List<BookDto> getBookByTitle(@RequestParam String title) {
         return bookService.getBookDtoByTitle(title);
     }
 
     @GetMapping(params = "authorName")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> bookByAuthor(@RequestParam String authorName) {
+    public List<BookDto> getBookByAuthor(@RequestParam String authorName) {
         return bookService.getBookByAuthor(authorName);
     }
+
+    @GetMapping(params = "isbn")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDto> getBookByIsbn(@RequestParam String isbn) {
+        return bookService.getBookDtoByIsbn(isbn);
+    }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
