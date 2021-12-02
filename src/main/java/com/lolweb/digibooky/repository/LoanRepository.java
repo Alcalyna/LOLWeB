@@ -24,6 +24,11 @@ public class LoanRepository {
         return bookLoan;
     }
 
+    public void deleteBookLoan(UUID loanId, UUID memberId){
+        this.activeLoans.remove(loanId);
+        this.bookMemberMap.remove(memberId);
+    }
+
     public void saveBookMemberMap(UUID bookId, UUID memberId) {
         this.bookMemberMap.put(bookId, memberId);
     }

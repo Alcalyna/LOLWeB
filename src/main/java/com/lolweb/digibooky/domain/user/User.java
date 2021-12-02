@@ -35,7 +35,7 @@ public class User {
     public enum Role {
         ADMIN(List.of(Feature.REGISTER_LIBRARIAN, Feature.REGISTER_BOOK, Feature.LENT_BOOKS)),
         LIBRARIAN(List.of(Feature.REGISTER_BOOK, Feature.LENT_BOOKS)),
-        MEMBER(List.of(Feature.BORROW_BOOK));
+        MEMBER(List.of(Feature.BORROW_BOOK, Feature.RETURN_BOOK));
 
         private List<Feature> featureList;
 

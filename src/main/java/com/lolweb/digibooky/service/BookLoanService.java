@@ -74,4 +74,11 @@ public class BookLoanService {
                 .map(bookId -> BookMapper.mapToBookDto(bookRepository.getBookById(bookId)))
                 .collect(Collectors.toList());
     }
+
+    public void returnBookLoan(UUID idBookLoan, String authorization) {
+        /// checking ...
+        UUID memberId = securityService.getCurrentUser(authorization).getId();
+
+
+    }
 }

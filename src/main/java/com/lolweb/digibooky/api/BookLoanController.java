@@ -38,4 +38,11 @@ public class BookLoanController {
         securityService.validateAccess(authorization, Feature.LENT_BOOKS);
         return bookLoanService.getLentBooksByMember(idMember);
     }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void returnBook(@RequestParam UUID idBookLoan, @RequestHeader  String authorization){
+        securityService.validateAccess(authorization, Feature.RETURN_BOOK);
+        bookLoanService.returnBookLoan(idBookLoan, authorization);
+    }
 }
