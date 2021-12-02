@@ -8,4 +8,8 @@ public class CreateBookLoanDto {
         return isbn;
     }
 
+    public CreateBookLoanDto setIsbn(String isbn) {
+        this.isbn = isbn;
+        return this;
+    }
 }

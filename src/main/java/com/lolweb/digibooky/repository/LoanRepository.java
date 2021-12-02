@@ -15,6 +15,10 @@ public class LoanRepository {
     public LoanRepository() {
     }
 
+    public Map<UUID, BookLoan> getMapOfLoans() {
+        return activeLoans;
+    }
+
     public List<BookLoan> getAllActiveLoans() {
         return activeLoans.values().stream().collect(Collectors.toList());
     }
@@ -37,6 +41,4 @@ public class LoanRepository {
         }
         return listOfBooks;
     }
-
-
 }
