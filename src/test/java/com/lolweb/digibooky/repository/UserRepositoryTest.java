@@ -27,6 +27,6 @@ class UserRepositoryTest {
         UserRepository userRepository = new UserRepository();
         userRepository.save(user);
 
-        Assertions.assertEquals(user, userRepository.getUser("librarian2@lolweb.com"));
+        Assertions.assertEquals(user, userRepository.getUserByEmail("librarian2@lolweb.com"));
     }
 }

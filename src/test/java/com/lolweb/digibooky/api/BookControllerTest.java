@@ -157,7 +157,7 @@ public class BookControllerTest {
 
             //THEN
             org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
-                    .hasMessage("Not allowed to");
+                    .hasMessage("You are not allowed to do this action.");
         }
 
         @Test
@@ -184,7 +184,7 @@ public class BookControllerTest {
         bookRepository = new BookRepository();
         loanRepository = new LoanRepository();
         securityService = new SecurityService(userRepository);
-        bookLoanService = new BookLoanService(loanRepository, bookRepository, securityService);
+        bookLoanService = new BookLoanService(loanRepository, bookRepository, securityService, userService);
         bookService = new BookService(bookRepository, bookLoanService);
         mapper = new BookMapper();
         userRepository = new UserRepository();

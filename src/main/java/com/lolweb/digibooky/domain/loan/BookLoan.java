@@ -1,12 +1,6 @@
 package com.lolweb.digibooky.domain.loan;
 
-import com.lolweb.digibooky.domain.book.Book;
-import com.lolweb.digibooky.exceptions.BookIsNotAvailableException;
-import com.lolweb.digibooky.exceptions.BookNotInRepositoryException;
-import com.lolweb.digibooky.repository.BookRepository;
-
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 public class BookLoan {

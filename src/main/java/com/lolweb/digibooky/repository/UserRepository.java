@@ -18,8 +18,8 @@ public class UserRepository {
         initUsers();
     }
 
-    public User save(User user){
-        users.put(user.getId(),user);
+    public User save(User user) {
+        users.put(user.getId(), user);
         return user;
     }
 
@@ -27,22 +27,24 @@ public class UserRepository {
         return users;
     }
 
-    public List<User> getAll(){
+    public List<User> getAll() {
         return users.values().stream().collect(Collectors.toList());
     }
+
+
 
     public User getUserById(UUID id) {
         return users.get(id);
     }
 
 
-    public  User getUser(String email) {
+    public User getUserByEmail(String email) {
         return users.values().stream()
                 .filter(user -> user.getEmailAddress().toString().equals(email))
                 .findFirst().orElse(null);
     }
 
-    public void initUsers(){
+    public void initUsers() {
         User admin = User.UserBuilder.userBuilder()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("admin", "lolweb.com"))
@@ -52,7 +54,6 @@ public class UserRepository {
                 .withLastName("Istrator")
                 .withRole(User.Role.ADMIN)
                 .build();
-
 
         User member = User.UserBuilder.userBuilder()
                 .withAddress(null)
@@ -74,8 +75,41 @@ public class UserRepository {
                 .withRole(User.Role.LIBRARIAN)
                 .build();
 
+        User gerri = User.UserBuilder.userBuilder()
+                .withAddress(null)
+                .withEmailAddress(new EmailAddress("gerri", "lolweb.com"))
+                .withPassword("gerri")
+                .withInss("4565987845213")
+                .withFirstName("Ger")
+                .withLastName("Ri")
+                .withRole(User.Role.MEMBER)
+                .build();
+
+        User william = User.UserBuilder.userBuilder()
+                .withAddress(null)
+                .withEmailAddress(new EmailAddress("william", "lolweb.com"))
+                .withPassword("william")
+                .withInss("4969877813")
+                .withFirstName("Wil")
+                .withLastName("Liam")
+                .withRole(User.Role.MEMBER)
+                .build();
+
+        User tim = User.UserBuilder.userBuilder()
+                .withAddress(null)
+                .withEmailAddress(new EmailAddress("tim", "lolweb.com"))
+                .withPassword("tim")
+                .withInss("4969877813")
+                .withFirstName("Tim")
+                .withLastName("V")
+                .withRole(User.Role.MEMBER)
+                .build();
+
         users.put(admin.getId(), admin);
         users.put(member.getId(), member);
         users.put(librarian.getId(), librarian);
+        users.put(gerri.getId(), gerri);
+        users.put(william.getId(), william);
+        users.put(tim.getId(), tim);
     }
 }

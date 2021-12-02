@@ -2,6 +2,8 @@ package com.lolweb.digibooky.service;
 
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.domain.user.User;
+import com.lolweb.digibooky.exceptions.PasswordNotValidException;
+import com.lolweb.digibooky.exceptions.UserDoesNotExistException;
 import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -21,26 +23,22 @@ public class SecurityService {
         String decodeUsernamePassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
         String password = decodeUsernamePassword.substring(decodeUsernamePassword.indexOf(":") + 1);
-        User user = userRepository.getUser(email);
+        User user = userRepository.getUserByEmail(email);
         if(user == null){
-            // custom exception needed
-            throw new IllegalArgumentException("user doesn't exist");
+            throw new UserDoesNotExistException();
         }
         if(!user.getPassword().equals(password)){
-            // custom exception needed
-            throw new IllegalArgumentException("Wrong password");
+            throw new PasswordNotValidException("Wrong password");
         }
         if(!user.hasAccessTo(feature)){
-            // custom exception needed
-            throw new UserNotAuthorizedException("Not allowed to");
+            throw new UserNotAuthorizedException("You are not allowed to do this action.");
         }
     }
 
     public User getCurrentUser(String authorization) {
         String decodeUsernamePassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
-        String password = decodeUsernamePassword.substring(decodeUsernamePassword.indexOf(":") + 1);
-        User user = userRepository.getUser(email);
+        User user = userRepository.getUserByEmail(email);
         return user;
     }
 }

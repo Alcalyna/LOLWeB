@@ -4,6 +4,7 @@ import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.domain.loan.BookLoan;
 import com.lolweb.digibooky.exceptions.BookIsNotAvailableException;
 import com.lolweb.digibooky.exceptions.BookNotInRepositoryException;
+import com.lolweb.digibooky.exceptions.UserDoesNotExistException;
 import com.lolweb.digibooky.repository.*;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookLoanDto;
@@ -22,14 +23,14 @@ public class BookLoanService {
 
     private LoanRepository loanRepository;
     private BookRepository bookRepository;
-    private LoanMapper loanMapper;
     private SecurityService securityService;
+    private UserService userService;
 
-    public BookLoanService(LoanRepository loanRepository, BookRepository bookRepository, SecurityService securityService) {
+    public BookLoanService(LoanRepository loanRepository, BookRepository bookRepository, SecurityService securityService, UserService userService) {
         this.loanRepository = loanRepository;
         this.bookRepository = bookRepository;
-        this.loanMapper = new LoanMapper();
         this.securityService = securityService;
+        this.userService = userService;
     }
 
     public LocalDate calculateDueDate() {
@@ -40,27 +41,22 @@ public class BookLoanService {
         return loanRepository;
     }
 
-    public LoanMapper getLoanMapper() {
-        return loanMapper;
-    }
-
     public Book isAvailableToLoan(String isbn) {
         List<Book> books = bookRepository.getAllByIsbn(isbn);
         if(books.isEmpty()) {
-            throw new BookNotInRepositoryException("Couldn't find the requested book in our library");
+            throw new BookNotInRepositoryException();
         }
         for(Book book: books) {
             if(book.isAvailable()) {
                 return book;
             }
         }
-        throw new BookIsNotAvailableException("The book you requested is currently not available for borrowing");
+        throw new BookIsNotAvailableException();
     }
 
     public BookLoanDto createBookLoan(CreateBookLoanDto createBookLoanDto, String authorization) {
         Book bookToLoan = isAvailableToLoan(createBookLoanDto.getIsbn());
         UUID memberId = securityService.getCurrentUser(authorization).getId();
-
         loanRepository.saveBookMemberMap(bookToLoan.getId(), memberId);
 
         BookLoan bookLoan = new BookLoan(calculateDueDate(), memberId, createBookLoanDto.getIsbn());
@@ -68,10 +64,12 @@ public class BookLoanService {
         bookToLoan.setAvailable(false);
 
         return LoanMapper.mapToLoanDto(bookLoan);
-
     }
 
     public List<BookDto> getLentBooksByMember(UUID idMember) {
+        if(userService.getUserById(idMember) == null) {
+            throw new UserDoesNotExistException();
+        }
         return loanRepository.getAllLentBooksByMember(idMember).stream()
                 .map(bookId -> BookMapper.mapToBookDto(bookRepository.getBookById(bookId)))
                 .collect(Collectors.toList());
