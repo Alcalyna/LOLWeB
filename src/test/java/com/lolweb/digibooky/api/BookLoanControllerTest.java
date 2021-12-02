@@ -1,17 +1,24 @@
 package com.lolweb.digibooky.api;
 
 import com.lolweb.digibooky.domain.book.Book;
+import com.lolweb.digibooky.domain.loan.BookLoan;
+import com.lolweb.digibooky.domain.user.User;
 import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.repository.LoanRepository;
 import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.BookLoanService;
 import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
+import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookLoanDto;
+import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
+import com.lolweb.digibooky.service.mappers.BookMapper;
+import com.lolweb.digibooky.service.mappers.LoanMapper;
 import com.lolweb.digibooky.service.mappers.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,5 +58,22 @@ public class BookLoanControllerTest {
 
         //THEN
         assertTrue(bookLoanRepository.getMapOfLoans().containsKey(actual));
+    }
+
+    @Test
+    void givenAMember_whenLibrarianGetAllLoansByMemberId_thenReturnAllBooksLentToMember() {
+        //Given
+        User member = userRepository.getUserByEmail("member@lolweb.com");
+        Book book = bookRepository.getAll().get(0);
+        String isbn = book.getIsbn();
+        CreateBookLoanDto createBookLoanDto = new CreateBookLoanDto().setIsbn(isbn);
+        bookLoanController.loanABook(createBookLoanDto,"Basic dGltQGxvbHdlYi5jb206dGlt");
+        UUID bookId = book.getId();
+
+        //When
+        List<BookDto> actual =  bookLoanController.lentBooks(member.getId(),"Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu");
+
+        //Then
+        assertTrue(bookLoanRepository.getMapOfBooksPerMember().containsKey(bookId));
     }
 }

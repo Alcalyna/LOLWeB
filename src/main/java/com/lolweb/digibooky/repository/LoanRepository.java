@@ -15,6 +15,10 @@ public class LoanRepository {
     public LoanRepository() {
     }
 
+    public Map<UUID, UUID> getMapOfBooksPerMember() {
+        return bookMemberMap;
+    }
+
     public Map<UUID, BookLoan> getMapOfLoans() {
         return activeLoans;
     }
