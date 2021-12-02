@@ -5,11 +5,16 @@ import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.CreateUserDto;
 import com.lolweb.digibooky.service.dtos.UserDto;
+import com.lolweb.digibooky.service.mappers.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.attribute.standard.Media;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "users")
@@ -38,6 +43,12 @@ public class UserController {
         securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
         return userService.addNewLibrarian(newLibrarian);
 
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDto> getAllUsers(){
+        return userService.getUserRepository().getAll().stream().map(user -> UserMapper.mapUserToUserDto(user)).collect(Collectors.toList());
     }
 
 //    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path="")
