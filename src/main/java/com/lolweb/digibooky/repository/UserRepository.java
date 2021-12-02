@@ -32,7 +32,6 @@ public class UserRepository {
     }
 
 
-
     public User getUserById(UUID id) {
         return users.get(id);
     }
@@ -42,6 +41,18 @@ public class UserRepository {
         return users.values().stream()
                 .filter(user -> user.getEmailAddress().toString().equals(email))
                 .findFirst().orElse(null);
+    }
+
+    public List<EmailAddress> getAllEmailAddress() {
+        return users.values().stream()
+                .map(user -> user.getEmailAddress())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getAllInss() {
+        return users.values().stream()
+                .map(user -> user.getInss())
+                .collect(Collectors.toList());
     }
 
     public void initUsers() {

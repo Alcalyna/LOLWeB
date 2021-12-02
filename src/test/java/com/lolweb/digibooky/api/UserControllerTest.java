@@ -40,7 +40,7 @@ class UserControllerTest {
     void setup() {
         userRepository = new UserRepository();
         userMapper = new UserMapper();
-        userService = new UserService(userRepository, userMapper);
+        userService = new UserService(userRepository);
         securityService = new SecurityService(userRepository);
         userController = new UserController(userService, securityService);
         initUsers();

@@ -1,5 +1,6 @@
 package com.lolweb.digibooky.service;
 
+import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.user.User;
 import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.dtos.CreateUserDto;
@@ -13,30 +14,50 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
+    }
+
+    public boolean userValidInputs(User user) {
+        String inss = user.getInss();
+        EmailAddress emailAddress = user.getEmailAddress();
+        String lastName = user.getLastName();
+        String city = user.getAddress().getCity();
+        if (inss == null || inss.trim().equals("")) {
+            throw new IllegalArgumentException("The INSS should be filled!");
+        }
+        if (userRepository.getAllInss().contains(inss)) {
+            throw new IllegalArgumentException("The INSS already exists!");
+        }
+        if (userRepository.getAllEmailAddress().contains(emailAddress)) {
+            throw new IllegalArgumentException("The email address already exists!");
+        }
+        if (lastName == null || lastName.trim().equals("")) {
+            throw new IllegalArgumentException("The last name should be filled!");
+        }
+        if (city == null || city.trim().equals("")) {
+            throw new IllegalArgumentException("The city should be filled!");
+        }
+        return true;
     }
 
     public UserDto addNewMember(CreateUserDto newUser) {
         User user = UserMapper.mapCreateUserDtoToUser(newUser);
-        if (newUser.getRole().equals(User.Role.MEMBER)) {
-            userRepository.save(user);
-        } else {
+        if(!newUser.getRole().equals(User.Role.MEMBER)) {
             throw new IllegalArgumentException("You can only register as a member");
+        } else if (userValidInputs(user)) {
+            userRepository.save(user);
         }
         return UserMapper.mapUserToUserDto(user);
-    }
+}
 
     public UserDto addNewLibrarian(CreateUserDto newUser) {
         User user = UserMapper.mapCreateUserDtoToUser(newUser);
-        if (newUser.getRole().equals(User.Role.LIBRARIAN) || newUser.getRole().equals(User.Role.ADMIN)) {
-            userRepository.save(UserMapper.mapCreateUserDtoToUser(newUser));
-
-        } else {
+        if (!(newUser.getRole().equals(User.Role.LIBRARIAN) || newUser.getRole().equals(User.Role.ADMIN))) {
             throw new IllegalArgumentException("You are not allowed to create a librarian");
+        } else if(userValidInputs(user)) {
+            userRepository.save(UserMapper.mapCreateUserDtoToUser(newUser));
         }
         return UserMapper.mapUserToUserDto(user);
     }
