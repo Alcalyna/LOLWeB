@@ -5,7 +5,6 @@ import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.dtos.UserDto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -44,8 +43,8 @@ public class User {
 
     public enum Role {
         ADMIN(List.of(Feature.REGISTER_LIBRARIAN)),
-        LIBRARIAN(List.of(Feature.REGISTER_BOOK)),
-        MEMBER(new ArrayList<>());
+        LIBRARIAN(List.of(Feature.REGISTER_BOOK,  Feature.LENT_BOOKS)),
+        MEMBER(List.of(Feature.BORROW_BOOK));
 
         private List<Feature> featureList;
 
@@ -55,10 +54,6 @@ public class User {
 
         public boolean containsFeature(Feature feature){
             return featureList.contains(feature);
-        }
-
-        public List<Feature> getFeatureList() {
-            return featureList;
         }
     }
 
@@ -162,11 +157,6 @@ public class User {
     }
 
     public boolean hasAccessTo(Feature feature){
-        System.out.println(this);
-        System.out.println(this.getRole());
-        for(Feature f : this.role.getFeatureList()) {
-            System.out.println(f);
-        }
         return this.role.containsFeature(feature);
     }
 

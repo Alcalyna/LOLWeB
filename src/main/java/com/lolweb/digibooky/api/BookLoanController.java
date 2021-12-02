@@ -1,23 +1,41 @@
 package com.lolweb.digibooky.api;
 
-import com.lolweb.digibooky.domain.loan.BookLoan;
-import com.lolweb.digibooky.repository.BookRepository;
-import com.lolweb.digibooky.repository.LoanRepository;
+import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.BookLoanService;
-import com.lolweb.digibooky.service.BookService;
+import com.lolweb.digibooky.service.SecurityService;
+import com.lolweb.digibooky.service.dtos.BookDto;
+import com.lolweb.digibooky.service.dtos.CreateBookLoanDto;
+import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/bookloans")
 public class BookLoanController {
 
     private BookLoanService bookLoanService;
+    private SecurityService securityService;
 
-    public BookLoanController() {
-        this.bookLoanService = new BookLoanService(new LoanRepository(),new BookRepository());
+    public BookLoanController(BookLoanService bookLoanService, SecurityService securityService) {
+        this.bookLoanService = bookLoanService;
+        this.securityService = securityService;
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookLoanDto loanABook(@RequestBody CreateBookLoanDto createBookLoanDto, @RequestHeader String authorization) {
+        securityService.validateAccess(authorization, Feature.BORROW_BOOK);
+        return bookLoanService.createBookLoan(createBookLoanDto, authorization);
+    }
+
+    @GetMapping(path="/librarian/lentbooks/{idMember}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDto> lentBooks(@PathVariable UUID idMember, @RequestHeader String authorization) {
+        securityService.validateAccess(authorization, Feature.LENT_BOOKS);
+        return bookLoanService.getLentBooksByMember(idMember);
     }
 }

@@ -52,6 +52,4 @@ public class CreateBookDto {
         isAvailable = available;
         return this;
     }
-
-
 }

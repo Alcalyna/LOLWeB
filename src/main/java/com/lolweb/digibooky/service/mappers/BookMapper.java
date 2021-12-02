@@ -10,7 +10,7 @@ import static com.lolweb.digibooky.domain.book.Book.*;
 @Component
 public class BookMapper {
 
-    public BookDto mapToBookDto(Book book) {
+    public static BookDto mapToBookDto(Book book) {
         return new BookDto()
                 .setId(book.getId())
                 .setIsbn(book.getIsbn())

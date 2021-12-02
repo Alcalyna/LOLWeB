@@ -1,7 +1,10 @@
 package com.lolweb.digibooky.domain.author;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.UUID;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Author {
 
     private final UUID id;
@@ -26,5 +29,7 @@ public class Author {
         return lastName;
     }
 
-
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

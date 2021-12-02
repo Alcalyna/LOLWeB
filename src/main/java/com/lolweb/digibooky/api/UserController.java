@@ -1,11 +1,11 @@
 package com.lolweb.digibooky.api;
 
 import com.lolweb.digibooky.domain.feature.Feature;
-import com.lolweb.digibooky.domain.user.User;
 import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.UserDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,15 +20,15 @@ public class UserController {
         this.securityService = securityService;
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerMember (@RequestBody UserDto newMember) {
         userService.addNewMember(newMember);
         return newMember;
     }
 
-    @RequestMapping(path="users/admin")
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @RequestMapping(path="/admin")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerLibrarian(@RequestBody  UserDto newLibrarian, @RequestHeader String authorization) {
         securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);

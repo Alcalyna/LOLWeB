@@ -19,17 +19,6 @@ public class UserDto {
     private User.Role role;
     private final Address address;
 
-    public UserDto(String firstName, String lastName, EmailAddress emailAddress, String password, String inss, Address address) {
-        this.id = UUID.randomUUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.password = password;
-        this.inss = inss;
-        this.role = User.Role.MEMBER;
-        this.address = address;
-    }
-
     public UserDto(User user) {
         this.id = user.getId();
         this.firstName = user.getFirstName();
@@ -66,10 +55,6 @@ public class UserDto {
 
     public User.Role getRole() {
         return role;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setRole(User.Role role) { this.role = role; }

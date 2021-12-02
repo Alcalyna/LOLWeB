@@ -1,10 +1,7 @@
 package com.lolweb.digibooky.service;
 
-
-
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.domain.user.User;
-import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -38,4 +35,11 @@ public class SecurityService {
         }
     }
 
+    public User getCurrentUser(String authorization) {
+        String decodeUsernamePassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
+        String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
+        String password = decodeUsernamePassword.substring(decodeUsernamePassword.indexOf(":") + 1);
+        User user = UserRepository.getUser(email);
+        return user;
+    }
 }

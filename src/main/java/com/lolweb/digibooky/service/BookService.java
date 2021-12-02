@@ -35,14 +35,16 @@ public class BookService {
         return bookMapper.mapToBookDto(bookToReturn);
     }
 
-    public BookLoanDto loanBook (Book toLoan, User borrower)  {
-        BookLoan loanToSave = bookLoanService.createLoan(toLoan, borrower);
-        bookLoanService.getLoanRepository().getActiveLoans().put(loanToSave.getId(), loanToSave);
-        return bookLoanService.getLoanMapper().mapToLoanDto(loanToSave);
+    public List<BookDto> getBookByTitle(String title){
+        return BookRepository.getBookByTitle(title).stream()
+                .map(book -> bookMapper.mapToBookDto(book))
+                .collect(Collectors.toList());
     }
 
-    public void updateBookAvailability(String isbn, boolean availability) {
-        getBookByIsbn(isbn).setAvailable(availability);
+    public List<BookDto> getBookByAuthor(String authorName) {
+        return BookRepository.getBookByAuthor(authorName).stream()
+                .map(book -> bookMapper.mapToBookDto(book))
+                .collect(Collectors.toList());
     }
 
     public Book getBookByIsbn(String isbn){
@@ -55,9 +57,9 @@ public class BookService {
     }
 
     public BookDto addNewBook(CreateBookDto newBook) {
-        Book book = bookMapper.mapCreateBookDtoToBook(newBook);
-        BookRepository.booksInLibrary.put(book.getId(), book);
-        return bookMapper.mapToBookDto(book);
+                        Book book = bookMapper.mapCreateBookDtoToBook(newBook);
+                        BookRepository.booksInLibrary.put(book.getId(), book);
+                        return bookMapper.mapToBookDto(book);
     }
 
 }

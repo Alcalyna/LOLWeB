@@ -5,10 +5,9 @@ import com.lolweb.digibooky.service.BookService;
 import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
-import com.lolweb.digibooky.service.dtos.UpdateBookDto;
-import com.lolweb.digibooky.service.dtos.loandto.BookLoanDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,31 +27,43 @@ public class BookController {
         this.securityService = securityService;
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getAllBooksInLibrary() {
         return bookService.getAllBooksInLibrary();
     }
 
-    @GetMapping(produces = "application/json", path = "/{id}")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBookById(@PathVariable("id") UUID id) {
         return bookService.getBookById(id);
     }
 
-    //PUT -> loan book, consumes a book and a user
-    @PutMapping(consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public BookLoanDto loanABook(@RequestBody UpdateBookDto updateBookDto) {
-        bookService.updateBookAvailability(updateBookDto.getBookIsbn(), false);
-        return bookService.loanBook(
-                bookService
-                        .getBookByIsbn(updateBookDto.getBookIsbn()),
-                userService
-                        .getUserRepository().getUserById(updateBookDto.getUserId()));
+    @GetMapping(path = "title/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDto> bookByTitle(@PathVariable String title) {
+        return bookService.getBookByTitle(title);
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @GetMapping(path = "author/{authorname}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDto> bookByAuthor(@PathVariable String authorname) {
+        return bookService.getBookByAuthor(authorname);
+    }
+
+    //PUT -> loan book, consumes a book and a user
+//    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public BookLoanDto loanABook(@RequestBody UpdateBookDto updateBookDto) {
+//        bookService.updateBookAvailability(updateBookDto.getBookIsbn(), false);
+//        return bookService.loanBook(
+//                bookService
+//                        .getBookByIsbn(updateBookDto.getBookIsbn()),
+//                userService
+//                        .getUserRepository().getUserById(updateBookDto.getUserId()));
+//    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public BookDto registerBook(@RequestBody CreateBookDto newBook, @RequestHeader String authorization) {
         securityService.validateAccess(authorization, Feature.REGISTER_BOOK);
