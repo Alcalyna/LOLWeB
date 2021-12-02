@@ -61,10 +61,10 @@ public class BookLoanService {
         Book bookToLoan = isAvailableToLoan(createBookLoanDto.getIsbn());
         UUID memberId = securityService.getCurrentUser(authorization).getId();
 
-        LoanRepository.saveBookMemberMap(bookToLoan.getId(), memberId);
+        loanRepository.saveBookMemberMap(bookToLoan.getId(), memberId);
 
         BookLoan bookLoan = new BookLoan(calculateDueDate(), memberId, createBookLoanDto.getIsbn());
-        LoanRepository.save(bookLoan);
+        loanRepository.save(bookLoan);
         bookToLoan.setAvailable(false);
 
         return LoanMapper.mapToLoanDto(bookLoan);
@@ -72,7 +72,7 @@ public class BookLoanService {
     }
 
     public List<BookDto> getLentBooksByMember(UUID idMember) {
-        return LoanRepository.getAllLentBooksByMember(idMember).stream()
+        return loanRepository.getAllLentBooksByMember(idMember).stream()
                 .map(bookId -> BookMapper.mapToBookDto(bookRepository.getBookById(bookId)))
                 .collect(Collectors.toList());
     }
