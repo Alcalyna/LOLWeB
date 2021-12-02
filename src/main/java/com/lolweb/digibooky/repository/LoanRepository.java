@@ -9,23 +9,23 @@ import java.util.stream.Collectors;
 @Repository
 public class LoanRepository {
 
-    private static final Map<UUID, BookLoan> activeLoans = new HashMap<>();
-    private static final Map<UUID, UUID> bookMemberMap = new HashMap<>();
+    private final Map<UUID, BookLoan> activeLoans = new HashMap<>();
+    private final Map<UUID, UUID> bookMemberMap = new HashMap<>();
 
-    public static List<BookLoan> getAll() {
+    public List<BookLoan> getAll() {
         return activeLoans.values().stream().collect(Collectors.toList());
     }
 
-    public static BookLoan save(BookLoan bookLoan) {
+    public BookLoan save(BookLoan bookLoan) {
         activeLoans.put(bookLoan.getId(), bookLoan);
         return bookLoan;
     }
 
-    public static void saveBookMemberMap(UUID bookId, UUID membreID) {
+    public void saveBookMemberMap(UUID bookId, UUID membreID) {
         bookMemberMap.put(bookId, membreID);
     }
 
-    public static List<UUID> getAllLentBooksByMember(UUID memberId) {
+    public List<UUID> getAllLentBooksByMember(UUID memberId) {
         List<UUID> listOfBooks = new ArrayList<>();
         for(UUID bookId : bookMemberMap.values()) {
             if(bookMemberMap.get(bookId).equals(memberId)) {
