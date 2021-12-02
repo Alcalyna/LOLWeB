@@ -67,6 +67,11 @@ public class Book {
             return this;
         }
 
+        public BookBuilder withId(UUID id) {
+            this.id = id;
+            return this;
+        }
+
         public BookBuilder withIsbn(String isbn) {
             this.isbn = isbn;
             return this;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -27,8 +26,12 @@ public class BookService {
         return bookRepository.getAll().stream().map(book -> BookMapper.mapToBookDto(book)).collect(Collectors.toList());
     }
 
-    public BookDto getBookById(UUID id) {
-        Book bookToReturn = bookRepository.getBookById(id);
+    public Book getBookById(UUID id) {
+        return this.bookRepository.getById(id);
+    }
+
+    public BookDto getBookDtoById(UUID id) {
+        Book bookToReturn = bookRepository.getById(id);
         return BookMapper.mapToBookDto(bookToReturn);
     }
 

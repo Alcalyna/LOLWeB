@@ -31,7 +31,7 @@ public class BookRepository {
         return booksInLibrary.values().stream().collect(Collectors.toList());
     }
 
-    public Book getBookById(UUID id) {
+    public Book getById(UUID id) {
         return booksInLibrary.get(id);
     }
 
@@ -61,7 +61,7 @@ public class BookRepository {
         booksInLibrary.put(book1.getId(), book1);
 
         Book book2 = Book.BookBuilder.bookBuilder()
-                .withId()
+                .withId((UUID.fromString("a6501d07-a051-437d-b074-08bf8be9f247")))
                 .withAuthor(new Author("Dalinh", "Luniel"))
                 .withIsAvailable(true)
                 .withIsbn("1234567897878")

@@ -9,6 +9,7 @@ import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.UserDto;
 import com.lolweb.digibooky.service.mappers.UserMapper;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +58,7 @@ class UserControllerTest {
                         .convertUserToDto(librarian),"Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu"));
 
         //THEN
-        org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
+        Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
                 .hasMessage("You are not allowed to do this action.");
     }
 

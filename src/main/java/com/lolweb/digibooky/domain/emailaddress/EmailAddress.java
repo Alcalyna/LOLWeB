@@ -19,7 +19,7 @@ public class EmailAddress {
 
 
     public EmailAddress(String username, String domain) {
-        if(!isValidEmail(username + "@" + domain)) { throw new EmailNotValidException("This email address is not valid");
+        if(!isValidEmail(username + "@" + domain)) { throw new EmailNotValidException("This email address is not valid!");
         }
         this.username = username;
         this.domain = domain;

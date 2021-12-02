@@ -36,7 +36,7 @@ public class BookController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBookById(@PathVariable("id") UUID id) {
-        return bookService.getBookById(id);
+        return bookService.getBookDtoById(id);
     }
 
     @GetMapping(params = "title")

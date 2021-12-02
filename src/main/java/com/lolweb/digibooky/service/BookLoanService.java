@@ -71,7 +71,7 @@ public class BookLoanService {
             throw new UserDoesNotExistException();
         }
         return loanRepository.getAllLentBooksByMember(idMember).stream()
-                .map(bookId -> BookMapper.mapToBookDto(bookRepository.getBookById(bookId)))
+                .map(bookId -> BookMapper.mapToBookDto(bookRepository.getById(bookId)))
                 .collect(Collectors.toList());
     }
 }

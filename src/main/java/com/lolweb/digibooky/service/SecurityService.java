@@ -6,6 +6,7 @@ import com.lolweb.digibooky.exceptions.PasswordNotValidException;
 import com.lolweb.digibooky.exceptions.UserDoesNotExistException;
 import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.UserRepository;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -31,7 +32,7 @@ public class SecurityService {
             throw new PasswordNotValidException("Wrong password");
         }
         if(!user.hasAccessTo(feature)){
-            throw new UserNotAuthorizedException("You are not allowed to do this action.");
+            throw new AccessDeniedException("You are not allowed to do this action.");
         }
     }
 
