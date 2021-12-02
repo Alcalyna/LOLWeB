@@ -3,8 +3,6 @@ package com.lolweb.digibooky.domain.emailaddress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class EmailAddressTest {
 
     @Test
