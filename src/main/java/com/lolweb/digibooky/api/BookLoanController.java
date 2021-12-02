@@ -39,7 +39,7 @@ public class BookLoanController {
         return bookLoanService.getLentBooksByMember(idMember);
     }
 
-    @DeleteMapping
+    @DeleteMapping(params = "idBookLoan")
     @ResponseStatus(HttpStatus.OK)
     public void returnBook(@RequestParam UUID idBookLoan, @RequestHeader  String authorization){
         securityService.validateAccess(authorization, Feature.RETURN_BOOK);

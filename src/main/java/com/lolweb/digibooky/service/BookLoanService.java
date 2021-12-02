@@ -76,9 +76,16 @@ public class BookLoanService {
     }
 
     public void returnBookLoan(UUID idBookLoan, String authorization) {
-        /// checking ...
         UUID memberId = securityService.getCurrentUser(authorization).getId();
-
-
+        BookLoan bookLoan = loanRepository.getBookLoanById(idBookLoan);
+        if(memberId != bookLoan.getBorrowerId()){
+            throw new IllegalArgumentException("member's id does not match");
+        }
+        if(bookLoan.getDueDate().isAfter(LocalDate.now())){
+            System.out.println("Book has been returned late");
+        }
+        Book returningBook = bookRepository.getBookByIsbn(bookLoan.getBorrowedBookIsbn());
+        returningBook.setAvailable(true);
+        loanRepository.deleteBookLoan(idBookLoan, returningBook.getId());
     }
 }

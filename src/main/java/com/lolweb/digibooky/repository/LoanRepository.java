@@ -28,9 +28,9 @@ public class LoanRepository {
         return bookLoan;
     }
 
-    public void deleteBookLoan(UUID loanId, UUID memberId){
+    public void deleteBookLoan(UUID loanId, UUID bookId){
         this.activeLoans.remove(loanId);
-        this.bookMemberMap.remove(memberId);
+        this.bookMemberMap.remove(bookId);
     }
 
     public void saveBookMemberMap(UUID bookId, UUID memberId) {
@@ -45,5 +45,17 @@ public class LoanRepository {
             }
         }
         return listOfBooks;
+    }
+
+    public BookLoan getBookLoanById(UUID bookLoanId){
+        return activeLoans.get(bookLoanId);
+    }
+    public UUID getBookByMemberId(UUID memberId){
+        for(UUID id : bookMemberMap.keySet()){
+           if(bookMemberMap.get(id) == memberId){
+               return id;
+           }
+       }
+       return null;
     }
 }
