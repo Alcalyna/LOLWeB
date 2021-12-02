@@ -43,7 +43,8 @@ public class BookControllerTest {
     void setUp() {
         bookRepository = new BookRepository();
         loanRepository = new LoanRepository();
-        bookLoanService = new BookLoanService(loanRepository, bookRepository);
+        securityService = new SecurityService(userRepository);
+        bookLoanService = new BookLoanService(loanRepository, bookRepository, securityService);
         bookService = new BookService(bookRepository, bookLoanService);
         mapper = new BookMapper();
         userRepository = new UserRepository();
