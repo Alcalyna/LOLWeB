@@ -23,6 +23,10 @@ public class UserRepository {
         return user;
     }
 
+    public HashMap<UUID, User> getUsers() {
+        return users;
+    }
+
     public List<User> getAll(){
         return users.values().stream().collect(Collectors.toList());
     }
@@ -40,7 +44,6 @@ public class UserRepository {
 
     public void initUsers(){
         User admin = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("admin", "lolweb.com"))
                 .withPassword("admin")
@@ -52,7 +55,6 @@ public class UserRepository {
 
 
         User member = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("member", "lolweb.com"))
                 .withPassword("member")
@@ -63,7 +65,6 @@ public class UserRepository {
                 .build();
 
         User librarian = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("librarian", "lolweb.com"))
                 .withPassword("librarian")

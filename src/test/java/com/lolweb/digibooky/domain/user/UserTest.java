@@ -26,7 +26,6 @@ class UserTest {
     public void testingBuilder() {
         // GIVEN
         User user = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(address)
                 .withEmailAddress(new EmailAddress("julinh", "lolweb.com"))
                 .withInss("959595959595")

@@ -13,7 +13,6 @@ class UserRepositoryTest {
     void init() {
         user = User.UserBuilder.userBuilder()
                 .withRole(User.Role.LIBRARIAN)
-                .withId()
                 .withFirstName("Li")
                 .withLastName("Brarian")
                 .withInss("95849565231")

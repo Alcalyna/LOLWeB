@@ -21,7 +21,7 @@ public class User {
     private final Address address;
 
     public User(UserBuilder builder) {
-        id = builder.id;
+        id = UUID.randomUUID();
         firstName = builder.firstName;
         lastName = builder.lastName;
         emailAddress = builder.emailAddress;
@@ -31,15 +31,6 @@ public class User {
         address = builder.address;
     }
 
-    public User (UserDto userDto) {
-        id = userDto.getId();
-        firstName = userDto.getFirstName();
-        lastName = userDto.getLastName();
-        emailAddress = userDto.getEmailAddress();
-        inss = userDto.getInss();
-        role = userDto.getRole();
-        address = userDto.getAddress();
-    }
 
     public enum Role {
         ADMIN(List.of(Feature.REGISTER_LIBRARIAN, Feature.REGISTER_BOOK, Feature.LENT_BOOKS)),
@@ -59,7 +50,7 @@ public class User {
 
 
     public static final class UserBuilder {
-        private UUID id;
+
         private String firstName;
         private String lastName;
         private EmailAddress emailAddress;
@@ -79,12 +70,7 @@ public class User {
             return new User(this);
         }
 
-        public UserBuilder withId() {
-            this.id = UUID.randomUUID();
-            return this;
-        }
-
-        public UserBuilder withFirstName(String firstName) {
+                public UserBuilder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
