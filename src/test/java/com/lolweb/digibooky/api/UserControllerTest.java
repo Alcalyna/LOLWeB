@@ -3,13 +3,16 @@ package com.lolweb.digibooky.api;
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.user.User;
+import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
+import com.lolweb.digibooky.service.dtos.UserDto;
 import com.lolweb.digibooky.service.mappers.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
@@ -45,12 +48,18 @@ class UserControllerTest {
         userController.registerMember(userMapper.convertUserToDto(member));
         assertEquals(userRepository.getUserById(member.getId()).getRole(), User.Role.MEMBER);
     }
-    /*
+
     @Test
-    void GivenUser_whenRegisteredAsALibrarian_then_RoleIsLibrarian(){
-        userController.registerLibrarian(userMapper.convertUserToDto(librarian));
-        assertEquals(userRepository.getUserById(librarian.getId()).getRole(), User.Role.LIBRARIAN);
-    }*/
+    void GivenLibrarian_whenRegisteredALibrarian_then_ThrowsUserNotAuthorizedException(){
+
+        Throwable exception = catchThrowable(() -> userController
+                .registerLibrarian(userMapper
+                        .convertUserToDto(librarian),"Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu"));
+
+        //THEN
+        org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
+                .hasMessage("Not allowed to");
+    }
 
 
     private void initUsers(){
