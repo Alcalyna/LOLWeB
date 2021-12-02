@@ -32,7 +32,7 @@ public class SecurityService {
             throw new PasswordNotValidException("Wrong password");
         }
         if(!user.hasAccessTo(feature)){
-            throw new AccessDeniedException("You are not allowed to do this action.");
+            throw new UserNotAuthorizedException("You are not allowed to do this action.");
         }
     }
 

@@ -47,21 +47,21 @@ class UserControllerTest {
     }
 
     @Test
-    void GivenUser_WhenRegisteredAsAMember_Then_NewMemberAdded() {
+    void givenUser_WhenRegisteredAsAMember_Then_NewMemberAdded() {
         UUID actual = userController.registerMember(createMemberDto).getId();
         assertTrue(userRepository.getUsers().containsKey(actual));
 
     }
 
     @Test
-    void GivenUser_WhenRegisteredAsAMember_Then_RoleIsMember() {
+    void givenUser_WhenRegisteredAsAMember_Then_RoleIsMember() {
         UUID actual =  userController.registerMember(createMemberDto).getId();
 
         assertEquals(userRepository.getUserById(actual).getRole(), User.Role.MEMBER);
     }
 
     @Test
-    void GivenLibrarian_whenRegisteredALibrarian_then_ThrowsUserNotAuthorizedException() {
+    void givenLibrarian_whenRegisteredALibrarian_then_ThrowsUserNotAuthorizedException() {
 
         Throwable exception = catchThrowable(() -> userController
                 .registerLibrarian(createLibrarianDto, "Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu"));
@@ -124,8 +124,6 @@ class UserControllerTest {
                 .setInss("4587298745")
                 .setRole(User.Role.MEMBER)
                 .setPassword("hellomember");
-
-
     }
 
 }
