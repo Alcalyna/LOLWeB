@@ -14,15 +14,6 @@ public class Book {
     private final String summary;
     private boolean isAvailable;
 
-    public Book(CreateBookDto createBookDto) {
-        this.id = UUID.randomUUID();
-        this.isbn = createBookDto.getIsbn();
-        this.title = createBookDto.getTitle();
-        this.author = createBookDto.getAuthor();
-        this.summary = createBookDto.getSummary();
-        this.isAvailable = createBookDto.isAvailable();
-    }
-
     public Book(BookBuilder builder) {
         this.id = builder.id;
         this.isbn = builder.isbn;

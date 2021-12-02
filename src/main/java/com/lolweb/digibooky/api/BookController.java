@@ -39,29 +39,17 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @GetMapping(path = "title/{title}")
+    @GetMapping(params = "title")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> bookByTitle(@PathVariable String title) {
-        return bookService.getBookByTitle(title);
+    public List<BookDto> bookByTitle(@RequestParam String title) {
+        return bookService.getBookDtoByTitle(title);
     }
 
-    @GetMapping(path = "author/{authorname}")
+    @GetMapping(params = "authorName")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> bookByAuthor(@PathVariable String authorname) {
-        return bookService.getBookByAuthor(authorname);
+    public List<BookDto> bookByAuthor(@RequestParam String authorName) {
+        return bookService.getBookByAuthor(authorName);
     }
-
-    //PUT -> loan book, consumes a book and a user
-//    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public BookLoanDto loanABook(@RequestBody UpdateBookDto updateBookDto) {
-//        bookService.updateBookAvailability(updateBookDto.getBookIsbn(), false);
-//        return bookService.loanBook(
-//                bookService
-//                        .getBookByIsbn(updateBookDto.getBookIsbn()),
-//                userService
-//                        .getUserRepository().getUserById(updateBookDto.getUserId()));
-//    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

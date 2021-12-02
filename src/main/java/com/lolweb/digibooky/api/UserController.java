@@ -35,4 +35,13 @@ public class UserController {
         userService.addNewLibrarian(newLibrarian);
         return newLibrarian;
     }
+
+//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path="")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UserDto registerAdmin(@RequestBody  UserDto newAdmin, @RequestHeader String authorization) {
+//        // todo change to REGISTER_ADMIN
+//        securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
+//        userService.addNewLibrarian(newAdmin);
+//        return newAdmin;
+//    }
 }

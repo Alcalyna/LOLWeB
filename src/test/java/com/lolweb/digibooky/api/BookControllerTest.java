@@ -2,6 +2,7 @@ package com.lolweb.digibooky.api;
 
 import com.lolweb.digibooky.domain.author.Author;
 import com.lolweb.digibooky.domain.book.Book;
+import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.BookRepository;
 import com.lolweb.digibooky.repository.LoanRepository;
 import com.lolweb.digibooky.repository.UserRepository;
@@ -10,17 +11,21 @@ import com.lolweb.digibooky.service.BookService;
 import com.lolweb.digibooky.service.SecurityService;
 import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
+import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import com.lolweb.digibooky.service.mappers.BookMapper;
 import com.lolweb.digibooky.service.mappers.UserMapper;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
+import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName(value = "main test class")
 public class BookControllerTest {
 
     private BookService bookService;
@@ -38,8 +43,152 @@ public class BookControllerTest {
     private Book book2;
     private Book book3;
 
-    @BeforeEach
-    void setUp() {
+    @Nested
+    @DisplayName(value = "SavingAndGettingBooksTest")
+    class SavingAndGettingBooksTest {
+
+        @BeforeEach
+        void setUp() {
+            initTesting();
+            bookRepository.save(book1);
+            bookRepository.save(book2);
+            bookRepository.save(book3);
+        }
+
+        @Test
+        void givenBookRepository_WhenSavingBooks_RepositoryNotEmpty() {
+            //GIVEN
+            //WHEN
+            //THEN
+            assertFalse(bookRepository.getAll().isEmpty());
+        }
+
+        @Test
+        void givenSeveralBooks_whenGetAllBooks_ReturnsAllBooks() {
+            //GIVEN
+            //WHEN
+
+            List<BookDto> actual = bookController
+                    .getAllBooksInLibrary()
+                    .stream()
+                    .toList();
+
+            List<BookDto> expected = List.of(mapper.mapToBookDto(book1), mapper.mapToBookDto(book2), mapper.mapToBookDto(book3));
+
+            //THEN
+            assertThat(actual).containsAll(expected);
+        }
+
+        @Test
+        void givenABook_whenGetDetails_ReturnsFullDetailsOfBook() {
+            //GIVEN
+            bookRepository.save(book1);
+            bookRepository.save(book2);
+            bookRepository.save(book3);
+
+            //WHEN
+            BookDto actual = bookController.getBookById(book1.getId());
+
+            //THEN
+            assertEquals(actual.getAuthor(), book1.getAuthor());
+            assertEquals(actual.getIsbn(), book1.getIsbn());
+            assertEquals(actual.getTitle(), book1.getTitle());
+            assertEquals(actual.getSummary(), book1.getSummary());
+            assertEquals(actual.isAvailable(), book1.isAvailable());
+            assertEquals(actual.getId(), book1.getId());
+        }
+    }
+
+    @Nested
+    @DisplayName(value = "RegisteringANewBookTest")
+    class RegisteringANewBookTest {
+        //an admin has all the possibilities of a librarian
+
+        @BeforeEach
+        void setUp() {
+            initTesting();
+        }
+
+        @Test
+        void givenLibrarian_WhenRegistersNewBook_RegisterBookIsAuthorized() {
+            //GIVEN
+            Author author = new Author("Lulinh", "Juniel");
+            CreateBookDto createBookDto = new CreateBookDto()
+                    .setIsbn("123456789000000")
+                    .setAuthor(author)
+                    .setTitle("LOLWeB")
+                    .setSummary("hahahhahahahahahaha")
+                    .setAvailable(true);
+
+            CreateBookDto createBookDto2 = new CreateBookDto()
+                    .setIsbn("123456789000000")
+                    .setAuthor(author)
+                    .setTitle("LOLWeB")
+                    .setSummary("hahahhahahahahahaha")
+                    .setAvailable(true);
+
+            UserRepository.initUsers();
+
+
+            //WHEN
+            bookController.registerBook(createBookDto, "Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu");
+            BookDto actual = bookController.getAllBooksInLibrary().get(0);
+            BookDto notIn = mapper.mapToBookDto(mapper.mapCreateBookDtoToBook(createBookDto2));
+
+            //THEN
+            assertThat(bookService.getAllBooksInLibrary()).contains(actual);
+
+            //assert that the test is well written
+            for (BookDto dto : bookService.getAllBooksInLibrary()) {
+                assertNotEquals(dto, notIn);
+            }
+        }
+
+        @Test
+        void givenUserNotLibrarian_WhenRegistersNewBook_ReturnsIsNotAuthorized() {
+            //GIVEN
+            Author author = new Author("Lulinh", "Juniel");
+            CreateBookDto createBookDto = new CreateBookDto()
+                    .setIsbn("123456789000000")
+                    .setAuthor(author)
+                    .setTitle("LOLWeB")
+                    .setSummary("hahahhahahahahahaha")
+                    .setAvailable(true);
+
+            UserRepository.initUsers();
+
+            //WHEN
+            Throwable exception = catchThrowable(() -> bookController.registerBook(createBookDto, "Basic bWVtYmVyQGxvbHdlYi5jb206bWVtYmVy"));
+
+            //THEN
+            org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
+                    .hasMessage("Not allowed to");
+        }
+
+        @Test
+        void givenAdmin_WhenRegistersNewBook_RegisterBookIsAutorized() {
+            //GIVEN
+            Author author = new Author("Lulinh", "Juniel");
+            CreateBookDto createBookDto = new CreateBookDto()
+                    .setIsbn("123456789000000")
+                    .setAuthor(author)
+                    .setTitle("LOLWeB")
+                    .setSummary("hahahhahahahahahaha")
+                    .setAvailable(true);
+
+            UserRepository.initUsers();
+
+
+            //WHEN
+            bookController.registerBook(createBookDto, "Basic YWRtaW5AbG9sd2ViLmNvbTphZG1pbg==");
+            BookDto actual = bookController.getAllBooksInLibrary().get(0);
+
+            //THEN
+            assertThat(bookService.getAllBooksInLibrary()).contains(actual);
+        }
+    }
+
+    private void initTesting() {
         bookRepository = new BookRepository();
         loanRepository = new LoanRepository();
         securityService = new SecurityService(userRepository);
@@ -52,6 +201,7 @@ public class BookControllerTest {
         securityService = new SecurityService(userRepository);
         bookController = new BookController(bookService, userService, securityService);
         author = new Author("Tim", "Le Massart");
+
         book1 = Book.BookBuilder.bookBuilder()
                 .withAuthor(author)
                 .withSummary("jdalfjfsflsf")
@@ -76,50 +226,5 @@ public class BookControllerTest {
                 .withIsAvailable(true)
                 .withId()
                 .build();
-
-        bookRepository.save(book1);
-        bookRepository.save(book2);
-        bookRepository.save(book3);
-    }
-
-    @Test
-    void givenBookRepository_WhenSavingBooks_RepositoryNotEmpty () {
-        //GIVEN
-        //WHEN
-        //THEN
-        Assertions.assertFalse(bookRepository.getAll().isEmpty());
-
-    }
-
-    @Test
-    void givenSeveralBooks_whenGetAllBooks_ReturnsAllBooks() {
-        //GIVEN
-        //WHEN
-
-        List<BookDto> actual = bookController
-                .getAllBooksInLibrary()
-                .stream()
-                .toList();
-
-        List <BookDto> expected = List.of(mapper.mapToBookDto(book1), mapper.mapToBookDto(book2), mapper.mapToBookDto(book3));
-
-        //THEN
-        assertThat(actual).containsAll(expected);
-    }
-
-    @Test
-    void givenABook_whenGetDetails_ReturnsFullDetailsOfBook () {
-        //GIVEN
-        //WHEN
-        BookDto actual = bookController.getBookById(book1.getId());
-
-        //THEN
-        assertEquals(actual.getAuthor(), book1.getAuthor());
-        assertEquals(actual.getIsbn(), book1.getIsbn());
-        assertEquals(actual.getTitle(), book1.getTitle());
-        assertEquals(actual.getSummary(), book1.getSummary());
-        assertEquals(actual.isAvailable(), book1.isAvailable());
-        assertEquals(actual.getId(), book1.getId());
-
     }
 }

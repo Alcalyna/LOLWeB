@@ -19,7 +19,7 @@ class UserRepositoryTest {
                 .withInss("95849565231")
                 .withPassword("librarian")
                 .withAddress(null)
-                .withEmailAddress(new EmailAddress("librarian", "lolweb.com"))
+                .withEmailAddress(new EmailAddress("librarian2", "lolweb.com"))
                 .build();
     }
 
@@ -28,6 +28,6 @@ class UserRepositoryTest {
         UserRepository userRepository = new UserRepository();
         userRepository.save(user);
 
-        Assertions.assertEquals(user, userRepository.getUser("librarian@lolweb.com"));
+        Assertions.assertEquals(user, userRepository.getUser("librarian2@lolweb.com"));
     }
 }

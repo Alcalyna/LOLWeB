@@ -12,9 +12,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class BookRepository {
-    public final static HashMap<UUID, Book> booksInLibrary = new HashMap<>();
+    private final HashMap<UUID, Book> booksInLibrary = new HashMap<>();
 
     public BookRepository() {
+        initBooks();
     }
 
     public Book save(Book book){
@@ -22,21 +23,25 @@ public class BookRepository {
         return book;
     }
 
-    public static List<Book> getAll(){
+    public HashMap<UUID, Book> getBooksInLibrary() {
+        return booksInLibrary;
+    }
+
+    public List<Book> getAll(){
         return booksInLibrary.values().stream().collect(Collectors.toList());
     }
 
-    public static Book getBookById(UUID id) {
+    public Book getBookById(UUID id) {
         return booksInLibrary.get(id);
     }
 
-    public static List<Book> getAllByIsbn(String isbn) {
+    public List<Book> getAllByIsbn(String isbn) {
         return booksInLibrary.values().stream()
                 .filter(book -> book.getIsbn().equals(isbn))
                 .collect(Collectors.toList());
     }
 
-    public static void initBooks() {
+    public void initBooks() {
         Book book0 = Book.BookBuilder.bookBuilder()
                 .withId()
                 .withAuthor(new Author("Dalinh", "Luniel"))
@@ -65,20 +70,20 @@ public class BookRepository {
         booksInLibrary.put(book2.getId(), book2);
     }
 
-    public static List<Book> getBookByTitle(String title){
-        title.toLowerCase();
-        List<Book> books = new ArrayList<>();
-        for(Book book: BookRepository.getAll()) {
-            String titleBook = book.getTitle().toLowerCase();
-            if(titleBook.contains(title)) {
-                books.add(book);
-            }
-        }
-        return books;
-    }
+//    public List<Book> getBookByTitle(String title){
+//        title.toLowerCase();
+//        List<Book> books = new ArrayList<>();
+//        for(Book book: this.getAll()) {
+//            String titleBook = book.getTitle().toLowerCase();
+//            if(titleBook.contains(title)) {
+//                books.add(book);
+//            }
+//        }
+//        return books;
+//    }
 
-    public static List<Book> getBookByAuthor(String authorName) {
-        List<Book> books = BookRepository.getAll();
+    public List<Book> getBookByAuthor(String authorName) {
+        List<Book> books = this.getAll();
         List<Book> results = new ArrayList<>();
         authorName = authorName.toLowerCase();
         for(Book book : books) {

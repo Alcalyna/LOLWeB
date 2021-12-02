@@ -42,8 +42,8 @@ public class User {
     }
 
     public enum Role {
-        ADMIN(List.of(Feature.REGISTER_LIBRARIAN)),
-        LIBRARIAN(List.of(Feature.REGISTER_BOOK,  Feature.LENT_BOOKS)),
+        ADMIN(List.of(Feature.REGISTER_LIBRARIAN, Feature.REGISTER_BOOK, Feature.LENT_BOOKS)),
+        LIBRARIAN(List.of(Feature.REGISTER_BOOK, Feature.LENT_BOOKS)),
         MEMBER(List.of(Feature.BORROW_BOOK));
 
         private List<Feature> featureList;
@@ -171,5 +171,19 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailAddress=" + emailAddress +
+                ", password='" + password + '\'' +
+                ", inss='" + inss + '\'' +
+                ", role=" + role +
+                ", address=" + address +
+                '}';
     }
 }

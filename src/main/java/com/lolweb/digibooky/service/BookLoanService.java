@@ -32,14 +32,6 @@ public class BookLoanService {
         this.securityService = securityService;
     }
 
-//    public BookLoan createLoan (Book toLoan, User borrower) throws BookNotInRepositoryException, BookIsNotAvailableException {
-//        if (!(bookRepository.getAll().contains(toLoan)))
-//            throw new BookNotInRepositoryException("Couldn't find the requested book in our library");
-//        if (!(bookRepository.getBookById(toLoan.getId()).isAvailable()))
-//            throw new BookIsNotAvailableException("The book you requested is currently not available for borrowing");
-//        return new BookLoan(calculateDueDate(), borrower.getId(), toLoan.getIsbn());
-//    }
-
     public LocalDate calculateDueDate() {
         return LocalDate.now().plusWeeks(3);
     }
@@ -53,7 +45,7 @@ public class BookLoanService {
     }
 
     public Book isAvailableToLoan(String isbn) {
-        List<Book> books = BookRepository.getAllByIsbn(isbn);
+        List<Book> books = bookRepository.getAllByIsbn(isbn);
         if(books.isEmpty()) {
             throw new BookNotInRepositoryException("Couldn't find the requested book in our library");
         }
@@ -81,7 +73,7 @@ public class BookLoanService {
 
     public List<BookDto> getLentBooksByMember(UUID idMember) {
         return LoanRepository.getAllLentBooksByMember(idMember).stream()
-                .map(bookId -> BookMapper.mapToBookDto(BookRepository.getBookById(bookId)))
+                .map(bookId -> BookMapper.mapToBookDto(bookRepository.getBookById(bookId)))
                 .collect(Collectors.toList());
     }
 }
