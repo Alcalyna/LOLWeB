@@ -1,7 +1,6 @@
 package com.lolweb.digibooky.domain.book;
 
 import com.lolweb.digibooky.domain.author.Author;
-import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import java.util.Objects;
 import java.util.UUID;
 

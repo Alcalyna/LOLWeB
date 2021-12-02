@@ -1,7 +1,6 @@
 package com.lolweb.digibooky.webapi;
 
 import com.lolweb.digibooky.domain.author.Author;
-import com.lolweb.digibooky.repository.UserRepository;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import io.restassured.RestAssured;
