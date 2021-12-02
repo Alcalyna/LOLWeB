@@ -15,27 +15,28 @@ public class LoanRepository {
     public LoanRepository() {
     }
 
-    public List<BookLoan> getAll() {
+    public List<BookLoan> getAllActiveLoans() {
         return activeLoans.values().stream().collect(Collectors.toList());
     }
 
     public BookLoan save(BookLoan bookLoan) {
-        activeLoans.put(bookLoan.getId(), bookLoan);
+        this.activeLoans.put(bookLoan.getId(), bookLoan);
         return bookLoan;
     }
 
-    public void saveBookMemberMap(UUID bookId, UUID membreId) {
-        bookMemberMap.put(bookId, membreId);
+    public void saveBookMemberMap(UUID bookId, UUID memberId) {
+        this.bookMemberMap.put(bookId, memberId);
     }
 
     public List<UUID> getAllLentBooksByMember(UUID memberId) {
         List<UUID> listOfBooks = new ArrayList<>();
-        for(UUID bookId : bookMemberMap.values()) {
+        for(UUID bookId : bookMemberMap.keySet()) {
             if(bookMemberMap.get(bookId).equals(memberId)) {
                 listOfBooks.add(bookId);
             }
         }
         return listOfBooks;
     }
+
 
 }

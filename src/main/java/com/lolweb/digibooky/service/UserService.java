@@ -6,6 +6,8 @@ import com.lolweb.digibooky.service.dtos.UserDto;
 import com.lolweb.digibooky.service.mappers.UserMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -32,5 +34,9 @@ public class UserService {
 
     public UserRepository getUserRepository() {
         return userRepository;
+    }
+
+    public User getUserById(UUID idMember) {
+        return userRepository.getUsers().get(idMember);
     }
 }
