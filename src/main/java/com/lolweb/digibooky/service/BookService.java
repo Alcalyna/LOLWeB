@@ -47,12 +47,22 @@ public class BookService {
         return books;
     }
 
+    private List<Book> getBookByIsbn(String isbn) {
+        List<Book> books = new ArrayList<>();
+        for (Book book : bookRepository.getAll()) {
+            String bookIsbn = book.getIsbn();
+            if (bookIsbn.contains(isbn)) {
+                books.add(book);
+            }
+        }
+        return books;
+    }
+
     public List<BookDto> getBookDtoByTitle(String title) {
         return this.getBookByTitle(title).stream()
                     .map(book -> BookMapper.mapToBookDto(book))
                     .collect(Collectors.toList());
     }
-
 
     public List<BookDto> getBookByAuthor(String authorName) {
         return bookRepository.getBookByAuthor(authorName).stream()
@@ -60,13 +70,10 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public Book getBookByIsbn(String isbn) {
-        return bookRepository
-                .getAll()
-                .stream()
-                .filter(book -> book.getIsbn().equals(isbn) && book.isAvailable())
-                .collect(Collectors.toList())
-                .get(0);
+    public List<BookDto> getBookDtoByIsbn(String isbn) {
+        return this.getBookByIsbn(isbn).stream()
+                .map(book -> BookMapper.mapToBookDto(book))
+                .collect(Collectors.toList());
     }
 
     public BookDto addNewBook(CreateBookDto newBook) {

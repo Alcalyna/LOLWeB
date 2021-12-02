@@ -74,4 +74,19 @@ public class BookLoanService {
                 .map(bookId -> BookMapper.mapToBookDto(bookRepository.getById(bookId)))
                 .collect(Collectors.toList());
     }
+
+    public void returnBookLoan(UUID idBookLoan, String authorization) {
+        UUID memberId = securityService.getCurrentUser(authorization).getId();
+        BookLoan bookLoan = loanRepository.getBookLoanById(idBookLoan);
+        System.out.println(bookLoan.getBorrowedBookIsbn());
+        if(memberId != bookLoan.getBorrowerId()){
+            throw new IllegalArgumentException("member's id does not match");
+        }
+        if(bookLoan.getDueDate().isBefore(LocalDate.now())){
+            System.out.println("Book has been returned late");
+        }
+        Book returningBook = bookRepository.getBookByIsbn(bookLoan.getBorrowedBookIsbn());
+        returningBook.setAvailable(true);
+        loanRepository.deleteBookLoan(idBookLoan, returningBook.getId());
+    }
 }

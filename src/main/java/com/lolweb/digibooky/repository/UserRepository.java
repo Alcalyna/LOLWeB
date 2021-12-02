@@ -23,13 +23,15 @@ public class UserRepository {
         return user;
     }
 
+    public HashMap<UUID, User> getUsers() {
+        return users;
+    }
+
     public List<User> getAll() {
         return users.values().stream().collect(Collectors.toList());
     }
 
-    public HashMap<UUID, User> getUsers() {
-        return users;
-    }
+
 
     public User getUserById(UUID id) {
         return users.get(id);
@@ -44,7 +46,6 @@ public class UserRepository {
 
     public void initUsers() {
         User admin = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("admin", "lolweb.com"))
                 .withPassword("admin")
@@ -55,7 +56,6 @@ public class UserRepository {
                 .build();
 
         User member = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("member", "lolweb.com"))
                 .withPassword("member")
@@ -66,7 +66,6 @@ public class UserRepository {
                 .build();
 
         User librarian = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("librarian", "lolweb.com"))
                 .withPassword("librarian")
@@ -77,7 +76,6 @@ public class UserRepository {
                 .build();
 
         User gerri = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("gerri", "lolweb.com"))
                 .withPassword("gerri")
@@ -88,7 +86,6 @@ public class UserRepository {
                 .build();
 
         User william = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("william", "lolweb.com"))
                 .withPassword("william")
@@ -99,7 +96,6 @@ public class UserRepository {
                 .build();
 
         User tim = User.UserBuilder.userBuilder()
-                .withId()
                 .withAddress(null)
                 .withEmailAddress(new EmailAddress("tim", "lolweb.com"))
                 .withPassword("tim")
