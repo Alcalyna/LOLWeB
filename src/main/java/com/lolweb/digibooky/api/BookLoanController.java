@@ -39,9 +39,9 @@ public class BookLoanController {
         return bookLoanService.getLentBooksByMember(idMember);
     }
 
-    @DeleteMapping(params = "idBookLoan")
+    @DeleteMapping(path="{idBookLoan}")
     @ResponseStatus(HttpStatus.OK)
-    public void returnBook(@RequestParam UUID idBookLoan, @RequestHeader  String authorization){
+    public void returnBook(@PathVariable UUID idBookLoan, @RequestHeader  String authorization){
         securityService.validateAccess(authorization, Feature.RETURN_BOOK);
         bookLoanService.returnBookLoan(idBookLoan, authorization);
     }

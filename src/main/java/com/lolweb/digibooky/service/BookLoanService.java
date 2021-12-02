@@ -78,6 +78,7 @@ public class BookLoanService {
     public void returnBookLoan(UUID idBookLoan, String authorization) {
         UUID memberId = securityService.getCurrentUser(authorization).getId();
         BookLoan bookLoan = loanRepository.getBookLoanById(idBookLoan);
+        System.out.println(bookLoan.getBorrowedBookIsbn());
         if(memberId != bookLoan.getBorrowerId()){
             throw new IllegalArgumentException("member's id does not match");
         }

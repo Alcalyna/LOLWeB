@@ -61,6 +61,19 @@ public class BookLoanControllerTest {
     }
 
     @Test
+    void givenBook_whenBookIsReturned_thenLoanIsFinished() {
+        //GIVEN
+        Book book = bookRepository.getAll().get(0);
+        CreateBookLoanDto createBookLoanDto = new CreateBookLoanDto().setIsbn(book.getIsbn());
+
+        //WHEN
+        UUID actual = bookLoanController.loanABook(createBookLoanDto,"Basic dGltQGxvbHdlYi5jb206dGlt").getId();
+        bookLoanController.returnBook(actual,"Basic dGltQGxvbHdlYi5jb206dGlt" );
+        //THEN
+        assert(!bookLoanRepository.getMapOfLoans().containsKey(actual));
+    }
+
+    @Test
     void givenAMember_whenLibrarianGetAllLoansByMemberId_thenReturnAllBooksLentToMember() {
         //Given
         User member = userRepository.getUserByEmail("member@lolweb.com");
