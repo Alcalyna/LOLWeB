@@ -58,7 +58,7 @@ class UserControllerTest {
 
         //THEN
         org.assertj.core.api.Assertions.assertThat(exception).isInstanceOf(UserNotAuthorizedException.class)
-                .hasMessage("Not allowed to");
+                .hasMessage("You are not allowed to do this action.");
     }
 
 

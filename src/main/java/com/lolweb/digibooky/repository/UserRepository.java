@@ -27,12 +27,16 @@ public class UserRepository {
         return users.values().stream().collect(Collectors.toList());
     }
 
+    public HashMap<UUID, User> getUsers() {
+        return users;
+    }
+
     public User getUserById(UUID id) {
         return users.get(id);
     }
 
 
-    public User getUser(String email) {
+    public User getUserByEmail(String email) {
         return users.values().stream()
                 .filter(user -> user.getEmailAddress().toString().equals(email))
                 .findFirst().orElse(null);

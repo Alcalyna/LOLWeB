@@ -32,9 +32,9 @@ public class BookLoanController {
         return bookLoanService.createBookLoan(createBookLoanDto, authorization);
     }
 
-    @GetMapping(path="/librarian/lentbooks/{idMember}")
+    @GetMapping(params = "idMember")
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> lentBooks(@PathVariable UUID idMember, @RequestHeader String authorization) {
+    public List<BookDto> lentBooks(@RequestParam UUID idMember, @RequestHeader String authorization) {
         securityService.validateAccess(authorization, Feature.LENT_BOOKS);
         return bookLoanService.getLentBooksByMember(idMember);
     }
