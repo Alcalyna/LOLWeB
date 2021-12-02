@@ -21,7 +21,7 @@ public class SecurityService {
         String decodeUsernamePassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
         String password = decodeUsernamePassword.substring(decodeUsernamePassword.indexOf(":") + 1);
-        User user = UserRepository.getUser(email);
+        User user = userRepository.getUser(email);
         if(user == null){
             // custom exception needed
             throw new IllegalArgumentException("user doesn't exist");
@@ -40,7 +40,7 @@ public class SecurityService {
         String decodeUsernamePassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
         String password = decodeUsernamePassword.substring(decodeUsernamePassword.indexOf(":") + 1);
-        User user = UserRepository.getUser(email);
+        User user = userRepository.getUser(email);
         return user;
     }
 }

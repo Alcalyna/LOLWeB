@@ -31,7 +31,6 @@ public class BookControllerIntegrationTest {
                 .setSummary("hahahhahahahahahaha")
                 .setAvailable(true);
 
-        UserRepository.initUsers();
 
         // WHEN
         BookDto bookDto = RestAssured

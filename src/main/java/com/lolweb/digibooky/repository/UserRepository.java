@@ -12,9 +12,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserRepository {
-    private final static HashMap<UUID, User> users = new HashMap<>();
+    private final HashMap<UUID, User> users = new HashMap<>();
 
     public UserRepository() {
+        initUsers();
     }
 
     public User save(User user){
@@ -22,7 +23,7 @@ public class UserRepository {
         return user;
     }
 
-    public static List<User> getAll(){
+    public List<User> getAll(){
         return users.values().stream().collect(Collectors.toList());
     }
 
@@ -31,13 +32,13 @@ public class UserRepository {
     }
 
 
-    public static User getUser(String email) {
+    public  User getUser(String email) {
         return users.values().stream()
                 .filter(user -> user.getEmailAddress().toString().equals(email))
                 .findFirst().orElse(null);
     }
 
-    public static void initUsers(){
+    public void initUsers(){
         User admin = User.UserBuilder.userBuilder()
                 .withId()
                 .withAddress(null)

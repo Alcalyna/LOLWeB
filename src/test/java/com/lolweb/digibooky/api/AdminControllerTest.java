@@ -29,8 +29,7 @@ class AdminControllerTest {
         userMapper = new UserMapper();
         userService = new UserService(userRepository, userMapper);
         securityService = new SecurityService(userRepository);
-        userController = new UserController(userService, securityService);
-        UserRepository.initUsers();
+        userController = new UserController(userService, securityService);;
     }
 
     //Test doe not compile yet : java.lang.NullPointerException: Cannot invoke "com.lolweb.digibooky.domain.user.User.getId()" because "user" is null

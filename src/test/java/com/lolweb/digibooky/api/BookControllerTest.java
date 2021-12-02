@@ -127,9 +127,6 @@ public class BookControllerTest {
                     .setSummary("hahahhahahahahahaha")
                     .setAvailable(true);
 
-            UserRepository.initUsers();
-
-
             //WHEN
             bookController.registerBook(createBookDto, "Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu");
             BookDto actual = bookController.getAllBooksInLibrary().get(0);
@@ -155,8 +152,6 @@ public class BookControllerTest {
                     .setSummary("hahahhahahahahahaha")
                     .setAvailable(true);
 
-            UserRepository.initUsers();
-
             //WHEN
             Throwable exception = catchThrowable(() -> bookController.registerBook(createBookDto, "Basic bWVtYmVyQGxvbHdlYi5jb206bWVtYmVy"));
 
@@ -175,9 +170,6 @@ public class BookControllerTest {
                     .setTitle("LOLWeB")
                     .setSummary("hahahhahahahahahaha")
                     .setAvailable(true);
-
-            UserRepository.initUsers();
-
 
             //WHEN
             bookController.registerBook(createBookDto, "Basic YWRtaW5AbG9sd2ViLmNvbTphZG1pbg==");
