@@ -60,5 +60,44 @@ class UserControllerIntegrationTest {
         Assertions.assertEquals(User.Role.MEMBER, userDto.getRole());
     }
 
+    @Test
+    void registerALibrarianDto_WhenPostANewLibrarian_ThenCreateLibrarianInUserRepository_ReturnUserDto() {
+        //GIVEN
+
+        Address address = Address.AddressBuilder.addressBuilder().withCity("Brussels").build();
+
+        CreateUserDto createUserDto = new CreateUserDto()
+                .setAddress(address)
+                .setEmailAddress(new EmailAddress("newlibrarian", "lolweb.com"))
+                .setFirstName("lola")
+                .setLastName("lalo")
+                .setInss("987451478524")
+                .setPassword("lola")
+                .setRole(User.Role.LIBRARIAN);
+
+        // WHEN
+        UserDto userDto = RestAssured
+                .given()
+                .header("authorization", "Basic YWRtaW5AbG9sd2ViLmNvbTphZG1pbg==")
+                .body(createUserDto)
+                .accept(JSON)
+                .contentType(JSON)
+                .when()
+                .port(port)
+                .post("/users/admin")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.CREATED.value())
+                .extract()
+                .as(UserDto.class);
+
+        // THEN
+        Assertions.assertEquals(address, userDto.getAddress());
+        Assertions.assertEquals(new EmailAddress("newlibrarian", "lolweb.com"), userDto.getEmailAddress());
+        Assertions.assertEquals("lola", userDto.getFirstName());
+        Assertions.assertEquals("lalo", userDto.getLastName());
+        Assertions.assertEquals("987451478524", userDto.getInss());
+        Assertions.assertEquals(User.Role.LIBRARIAN, userDto.getRole());
+    }
 
 }

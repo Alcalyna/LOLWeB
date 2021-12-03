@@ -28,13 +28,6 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-//    public List<String> getAllBooksNoDetail() {
-//        return bookRepository.getAll().stream()
-//                .map(book -> BookMapper.mapToBookDto(book))
-//                .map(book -> book.getBasicInfo())
-//                .collect(Collectors.toList());
-//    }
-
     public Book getBookById(UUID id) {
         return this.bookRepository.getById(id);
     }

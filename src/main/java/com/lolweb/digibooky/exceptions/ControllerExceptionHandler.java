@@ -16,4 +16,18 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, exception.getMessage());
     }
 
+    @ExceptionHandler(PasswordNotValidException.class)
+    public void passwordNotValidException(PasswordNotValidException passwordNotValidException, HttpServletResponse response) throws  IOException {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, passwordNotValidException.getMessage());
+    }
+
+    @ExceptionHandler(UserDoesNotExistException.class)
+    public void userDoesNotExistException(UserDoesNotExistException userDoesNotExistException, HttpServletResponse response) throws  IOException {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, userDoesNotExistException.getMessage());
+    }
+
+    @ExceptionHandler(BookNotInRepositoryException.class)
+    public void setBookNotInRepositoryException(BookNotInRepositoryException bookNotInRepositoryException, HttpServletResponse response) throws  IOException {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, bookNotInRepositoryException.getMessage());
+    }
 }

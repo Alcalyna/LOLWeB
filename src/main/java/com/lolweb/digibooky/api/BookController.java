@@ -1,6 +1,5 @@
 package com.lolweb.digibooky.api;
 
-import com.lolweb.digibooky.domain.book.Book;
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.BookService;
 import com.lolweb.digibooky.service.SecurityService;
