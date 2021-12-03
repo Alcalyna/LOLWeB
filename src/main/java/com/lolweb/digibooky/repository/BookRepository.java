@@ -89,50 +89,50 @@ public class BookRepository {
 
         Book book4 = Book.BookBuilder.bookBuilder()
                 .withId(UUID.fromString("eed39bec-0cda-4e4b-ae65-c6cdfae6fa79"))
-                .withAuthor(new Author("Jarod", "Rosello"))
+                .withAuthor(new Author("Kungfu", "Panda"))
                 .withIsAvailable(true)
                 .withIsbn("9781603094443")
                 .withTitle("Red Panda & Moon Bear")
-                .withSummary("Perfect for readers who like their superhero stories with a heavy dose of humor... The tale is heartwarming and silly, with Spanish interspersed throughout. The bright and cartoonish artwork is just as charming... ")
+                .withSummary("Say no to anti-panda racism!")
                 .build();
         booksInLibrary.put(book4.getId(), book4);
 
         Book book5 = Book.BookBuilder.bookBuilder()
                 .withId(UUID.fromString("5e709f49-c93b-4ed8-9097-9366ebe4cad0"))
-                .withAuthor(new Author("J.K.", "Rowling"))
+                .withAuthor(new Author("J.K.", "Bowling"))
                 .withIsAvailable(true)
                 .withIsbn("9780747546290")
-                .withTitle("Harry Potter and The Prisoner of Azkaban")
-                .withSummary("Thirteen-year-old Harry Potter spends another unhappy summer at the Dursleys. After Aunt Marge insults Harry and his deceased parents, an angry Harry accidentally inflates her. Fearing expulsion from Hogwarts, he runs away.")
+                .withTitle("Harry Potter and The Prisoner of Switchfully")
+                .withSummary("Do you like Harry Potter? - Because I a-Dumbledore you!")
                 .build();
         booksInLibrary.put(book5.getId(), book5);
 
         Book book6 = Book.BookBuilder.bookBuilder()
                 .withId(UUID.fromString("89d94c2e-1cb9-47d1-8444-0c4a33028f0e"))
-                .withAuthor(new Author("J.K.", "Rowling"))
+                .withAuthor(new Author("J.K.", "Bowling"))
                 .withIsAvailable(true)
                 .withIsbn("9780747581109")
-                .withSummary("Lord Voldemort has returned to power, and his wrath has been felt in both the Muggle and Wizarding worlds. Severus Snape, long considered an enemy of Voldemort and a member of Dumbledore’s anti-Voldemort coalition, the Order of the Phoenix, meets with Narcissa Malfoy, mother of Draco and wife of Lucius, an imprisoned Death Eater. Snape makes an Unbreakable Vow to Narcissa, promising to protect her son, Draco.")
+                .withSummary("What do you call an electrocuted Dark Lord? - A Volt-demort.")
                 .withTitle("Harry Potter and The Half-Blood Prince")
                 .build();
         booksInLibrary.put(book6.getId(), book6);
 
         Book book7 = Book.BookBuilder.bookBuilder()
                 .withId(UUID.fromString("0423e2fd-b5be-46ba-9c9f-1b667a9fc2cb"))
-                .withAuthor(new Author("J.K.", "Rowling"))
+                .withAuthor(new Author("J.K.", "Bowling"))
                 .withIsAvailable(true)
                 .withIsbn("9780747581109")
                 .withTitle("Harry Potter and The Half-Blood Prince")
-                .withSummary("Lord Voldemort has returned to power, and his wrath has been felt in both the Muggle and Wizarding worlds. Severus Snape, long considered an enemy of Voldemort and a member of Dumbledore’s anti-Voldemort coalition, the Order of the Phoenix, meets with Narcissa Malfoy, mother of Draco and wife of Lucius, an imprisoned Death Eater. Snape makes an Unbreakable Vow to Narcissa, promising to protect her son, Draco.")
+                .withSummary("What do you call an electrocuted Dark Lord? - A Volt-demort.")
                 .build();
         booksInLibrary.put(book7.getId(), book7);
 
         Book book8 = Book.BookBuilder.bookBuilder()
                 .withId(UUID.fromString("6feef42a-63a6-4722-a183-bde4a0882a4c"))
-                .withAuthor(new Author("J.K.", "Rowling"))
+                .withAuthor(new Author("J.K.", "Bowling"))
                 .withIsAvailable(true)
                 .withIsbn("9780747581109")
-                .withSummary("Lord Voldemort has returned to power, and his wrath has been felt in both the Muggle and Wizarding worlds. Severus Snape, long considered an enemy of Voldemort and a member of Dumbledore’s anti-Voldemort coalition, the Order of the Phoenix, meets with Narcissa Malfoy, mother of Draco and wife of Lucius, an imprisoned Death Eater. Snape makes an Unbreakable Vow to Narcissa, promising to protect her son, Draco.")
+                .withSummary("What do you call an electrocuted Dark Lord? - A Volt-demort.")
                 .withTitle("Harry Potter and The Half-Blood Prince")
                 .build();
         booksInLibrary.put(book8.getId(), book8);
