@@ -1,42 +1,49 @@
-//package com.lolweb.digibooky.api;
-//
-//import com.lolweb.digibooky.service.BookService;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.http.MediaType;
-//import org.springframework.test.context.junit.jupiter.SpringExtension;
-//import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.MvcResult;
-//
-//import java.util.UUID;
-//
-//import static org.mockito.BDDMockito.given;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-//
-//@ExtendWith(SpringExtension.class)
-////@WebMvcTest(BookController.class)
-//@SpringBootTest
-//class BookControllerIntTest {
-//
-//    @Autowired
-//    private MockMvc mvc;
-//
-//    @Autowired
-//    private
-//
-//    @MockBean
-//    private BookService bookService;
-//
-//    @Test
-//    void bookByTitle() throws Exception {
-////        RequestBuilder request = MockMvcRequestBuilders.get("/books?title=group by");
-//        UUID id = UUID.fromString("a6501d07-a051-437d-b074-08bf8be9f247");
-//        given(bookService.getBookByTitle("group by").get(0)).willReturn(bookService.getBookById(id));
-//
+package com.lolweb.digibooky.api;
+
+import com.lolweb.digibooky.service.BookService;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
+class BookControllerIntTest {
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Autowired
+    private BookService bookService;
+
+    @Test
+    void addABookWithoutTitle_ThrowsError() throws Exception {
+        String json = "{\n" +
+                "    \"isbn\": \"9781119584704\",\n" +
+                "    \"title\": \"\",\n" +
+                "    \"author\": {\n" +
+                "        \"firstName\": \"Jeanne\",\n" +
+                "        \"lastName\": \"D'arc\"\n" +
+                "    },\n" +
+                "    \"summary\": \"Study Guide: Exam 1Z0-816 were published before Oracle announced major changes to its OCP certification program and the release of the new Developer 1Z0-819 exam.\",\n" +
+                "    \"available\": true\n" +
+                "}";
+
+        this.mvc.perform(post("/books")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("authorization", "Basic bGlicmFyaWFuQGxvbHdlYi5jb206bGlicmFyaWFu")
+                .content(json))
+                .andExpect(status().reason(containsString("The title should be filled!")));
+
 //        MvcResult result = mvc.perform(get("/books?title=group by")
 //                        .contentType(MediaType.APPLICATION_JSON))
 //                .andExpect(status().isOk())
@@ -46,6 +53,6 @@
 //
 //        String content = result.getResponse().getContentAsString();
 //        System.out.println(content);
-//
-//    }
-//}
+
+    }
+}
