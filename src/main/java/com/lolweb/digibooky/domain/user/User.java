@@ -3,7 +3,6 @@ package com.lolweb.digibooky.domain.user;
 import com.lolweb.digibooky.domain.address.Address;
 import com.lolweb.digibooky.domain.emailaddress.EmailAddress;
 import com.lolweb.digibooky.domain.feature.Feature;
-import com.lolweb.digibooky.service.dtos.UserDto;
 
 import java.util.List;
 import java.util.Objects;

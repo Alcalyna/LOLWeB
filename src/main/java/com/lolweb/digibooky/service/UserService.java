@@ -14,9 +14,11 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SecurityService securityService;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, SecurityService securityService) {
         this.userRepository = userRepository;
+        this.securityService = securityService;
     }
 
     public boolean userValidInputs(User user) {
@@ -45,7 +47,7 @@ public class UserService {
     public UserDto addNewMember(CreateUserDto newUser) {
         User user = UserMapper.mapCreateUserDtoToUser(newUser);
         if(!newUser.getRole().equals(User.Role.MEMBER)) {
-            throw new IllegalArgumentException("You can only register as a member");
+            throw new IllegalArgumentException("You can only register as a member!");
         } else if (userValidInputs(user)) {
             userRepository.save(user);
         }
@@ -53,9 +55,9 @@ public class UserService {
 }
 
     public UserDto addNewLibrarian(CreateUserDto newUser) {
-        User user = UserMapper.mapCreateUserDtoToUser(newUser);
-        if (!(newUser.getRole().equals(User.Role.LIBRARIAN) || newUser.getRole().equals(User.Role.ADMIN))) {
-            throw new IllegalArgumentException("You are not allowed to create a librarian");
+        User user = UserMapper.mapCreateUserDtoToUser(newUser);;
+        if (!user.getRole().equals(User.Role.LIBRARIAN)) {
+            throw new IllegalArgumentException("You can only create a librarian!");
         } else if(userValidInputs(user)) {
             userRepository.save(UserMapper.mapCreateUserDtoToUser(newUser));
         }

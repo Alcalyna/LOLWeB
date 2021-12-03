@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerLibrarian(@RequestBody  CreateUserDto newLibrarian, @RequestHeader String authorization) {
-        logger.debug("Method not running properly");
+//        logger.debug("Method not running properly");
         securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
         return userService.addNewLibrarian(newLibrarian);
 

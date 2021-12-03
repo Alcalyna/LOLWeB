@@ -189,7 +189,7 @@ public class BookControllerTest {
         mapper = new BookMapper();
         userRepository = new UserRepository();
         userMapper = new UserMapper();
-        userService = new UserService(userRepository);
+        userService = new UserService(userRepository, securityService);
         securityService = new SecurityService(userRepository);
         bookController = new BookController(bookService, userService, securityService);
         author = new Author("Tim", "Le Massart");
