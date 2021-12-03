@@ -43,7 +43,7 @@ public class BookControllerTest {
     private Book book2;
     private Book book3;
 
-    @Nested
+     @Nested
     @DisplayName(value = "SavingAndGettingBooksTest")
     class SavingAndGettingBooksTest {
 
@@ -96,6 +96,42 @@ public class BookControllerTest {
             assertEquals(actual.getSummary(), book1.getSummary());
             assertEquals(actual.isAvailable(), book1.isAvailable());
             assertEquals(actual.getId(), book1.getId());
+        }
+
+        @Test
+         void givenAnIsbn_ReturnsABook() {
+            List<BookDto> result = bookController.getBookByIsbn("12122121212121");
+
+            assertTrue(!result.isEmpty());
+        }
+
+        @Test
+        void givenAPartialIsbn_ReturnsAListOfBooks() {
+            List<BookDto> result = bookController.getBookByIsbn("1212212");
+
+            assertTrue(!result.isEmpty());
+
+        }
+
+        @Test
+         void givenABookTitle_ReturnsAListOfBooks() {
+            List<BookDto> result = bookController.getBookByTitle("Le Life Of Tim");
+
+            assertTrue(!result.isEmpty());
+        }
+
+        @Test
+         void givenAPartialBookTitle_ReturnsAListOfBooks() {
+            List<BookDto> result = bookController.getBookByTitle("Life Of");
+
+            assertTrue(!result.isEmpty());
+        }
+
+        @Test
+         void givenAnAuthor_ReturnsAListOfBooks() {
+            List<BookDto> result = bookController.getBookByAuthor("Tim Le Massart");
+
+            assertTrue(!result.isEmpty());
         }
     }
 
