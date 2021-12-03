@@ -91,4 +91,14 @@ public class BookDto {
                 ", summary='" + summary + '\'' +
                 '}';
     }
+
+//    public String getBasicInfo() {
+//        return "{ISBN: " + getIsbn() + "} " + '\''
+//                + "{Title: " + getTitle() + "} "
+//                + "{Author: " + getAuthor().getFullName() + "}";
+//    }
+//
+//    public String getDetail() {
+//        return getBasicInfo() + " {Summary: " + getSummary() + "}";
+//    }
 }

@@ -23,8 +23,17 @@ public class BookService {
     }
 
     public List<BookDto> getAllBooksInLibrary() {
-        return bookRepository.getAll().stream().map(book -> BookMapper.mapToBookDto(book)).collect(Collectors.toList());
+        return bookRepository.getAll().stream()
+                .map(book -> BookMapper.mapToBookDto(book))
+                .collect(Collectors.toList());
     }
+
+//    public List<String> getAllBooksNoDetail() {
+//        return bookRepository.getAll().stream()
+//                .map(book -> BookMapper.mapToBookDto(book))
+//                .map(book -> book.getBasicInfo())
+//                .collect(Collectors.toList());
+//    }
 
     public Book getBookById(UUID id) {
         return this.bookRepository.getById(id);
@@ -78,8 +87,26 @@ public class BookService {
 
     public BookDto addNewBook(CreateBookDto newBook) {
         Book book = BookMapper.mapCreateBookDtoToBook(newBook);
-        bookRepository.getBooksInLibrary().put(book.getId(), book);
+        if(bookValidInputs(book)) {
+            book.setAvailable(true);
+            bookRepository.getBooksInLibrary().put(book.getId(), book);
+        }
         return BookMapper.mapToBookDto(book);
     }
 
+    public boolean bookValidInputs(Book book) {
+        String isbn = book.getIsbn();
+        String authorLastName = book.getAuthor().getLastName();
+        String title = book.getTitle();
+        if(isbn == null || isbn.trim().equals("")) {
+            throw new IllegalArgumentException("The ISBN should be filled!");
+        }
+        if(authorLastName == null || authorLastName.trim().equals("")) {
+            throw new IllegalArgumentException("The author's last name should be filled!");
+        }
+        if(title == null || title.trim().equals("")) {
+            throw new IllegalArgumentException("The title should be filled!");
+        }
+        return true;
+    }
 }

@@ -42,14 +42,14 @@ public class User {
             this.featureList = featureList;
         }
 
-        public boolean containsFeature(Feature feature){
+        public boolean containsFeature(Feature feature) {
             return featureList.contains(feature);
         }
     }
 
 
     public static final class UserBuilder {
-
+        private UUID id;
         private String firstName;
         private String lastName;
         private EmailAddress emailAddress;
@@ -69,7 +69,7 @@ public class User {
             return new User(this);
         }
 
-                public UserBuilder withFirstName(String firstName) {
+        public UserBuilder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
@@ -103,6 +103,7 @@ public class User {
             this.password = password;
             return this;
         }
+
     }
 
     public UUID getId() {
@@ -141,7 +142,7 @@ public class User {
         this.role = role;
     }
 
-    public boolean hasAccessTo(Feature feature){
+    public boolean hasAccessTo(Feature feature) {
         return this.role.containsFeature(feature);
     }
 

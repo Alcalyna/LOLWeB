@@ -80,7 +80,7 @@ public class BookLoanService {
         BookLoan bookLoan = loanRepository.getBookLoanById(idBookLoan);
         System.out.println(bookLoan.getBorrowedBookIsbn());
         if(memberId != bookLoan.getBorrowerId()){
-            throw new IllegalArgumentException("member's id does not match");
+            throw new IllegalArgumentException("You can not return someone else's book!");
         }
         if(bookLoan.getDueDate().isBefore(LocalDate.now())){
             System.out.println("Book has been returned late");
