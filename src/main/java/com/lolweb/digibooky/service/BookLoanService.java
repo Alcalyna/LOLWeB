@@ -37,11 +37,7 @@ public class BookLoanService {
         return LocalDate.now().plusWeeks(3);
     }
 
-    public LoanRepository getLoanRepository() {
-        return loanRepository;
-    }
-
-    public Book isAvailableToLoan(String isbn) {
+    public Book getByIsbnAndAvailableForLoan(String isbn) {
         List<Book> books = bookRepository.getAllByIsbn(isbn);
         if(books.isEmpty()) {
             throw new BookNotInRepositoryException();
@@ -54,9 +50,9 @@ public class BookLoanService {
         throw new BookIsNotAvailableException();
     }
 
-    public BookLoanDto createBookLoan(CreateBookLoanDto createBookLoanDto, String authorization) {
-        Book bookToLoan = isAvailableToLoan(createBookLoanDto.getIsbn());
-        UUID memberId = securityService.getCurrentUser(authorization).getId();
+    public BookLoanDto createBookLoan(CreateBookLoanDto createBookLoanDto) {
+        Book bookToLoan = getByIsbnAndAvailableForLoan(createBookLoanDto.getIsbn());
+        UUID memberId = UUID.fromString(createBookLoanDto.getUserId());
         loanRepository.saveBookMemberMap(bookToLoan.getId(), memberId);
 
         BookLoan bookLoan = new BookLoan(calculateDueDate(), memberId, createBookLoanDto.getIsbn());
@@ -82,11 +78,12 @@ public class BookLoanService {
         if(memberId != bookLoan.getBorrowerId()){
             throw new IllegalArgumentException("You can not return someone else's book!");
         }
-        if(bookLoan.getDueDate().isBefore(LocalDate.now())){
+        if(bookLoan.isReturnedToLate()){
             System.out.println("Book has been returned late");
         }
         Book returningBook = bookRepository.getBookByIsbn(bookLoan.getBorrowedBookIsbn());
         returningBook.setAvailable(true);
         loanRepository.deleteBookLoan(idBookLoan, returningBook.getId());
     }
+
 }

@@ -6,6 +6,7 @@ import com.lolweb.digibooky.exceptions.PasswordNotValidException;
 import com.lolweb.digibooky.exceptions.UserDoesNotExistException;
 import com.lolweb.digibooky.exceptions.UserNotAuthorizedException;
 import com.lolweb.digibooky.repository.UserRepository;
+import com.lolweb.digibooky.service.dtos.CreateBookLoanDto;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,10 @@ public class SecurityService {
         String email = decodeUsernamePassword.substring(0, decodeUsernamePassword.indexOf(":"));
         User user = userRepository.getUserByEmail(email);
         return user;
+    }
+
+    public void validateCanHaveAccessToBook(String authorization, CreateBookLoanDto createBookLoanDto) {
+        User currentUser = getCurrentUser(authorization);
+        createBookLoanDto.getUserId();
     }
 }

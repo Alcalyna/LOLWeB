@@ -33,4 +33,7 @@ public class BookLoan {
         return borrowedBookIsbn;
     }
 
+    public boolean isReturnedToLate() {
+        return getDueDate().isBefore(LocalDate.now());
+    }
 }

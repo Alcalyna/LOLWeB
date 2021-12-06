@@ -1,6 +1,7 @@
 package com.lolweb.digibooky.domain.book;
 
 import com.lolweb.digibooky.domain.author.Author;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public class Book {
     private boolean isAvailable;
 
     public Book(BookBuilder builder) {
+        validateInput(builder);
         this.id = builder.id;
         this.isbn = builder.isbn;
         this.title = builder.title;
@@ -44,6 +46,22 @@ public class Book {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public boolean validateInput(BookBuilder builder) {
+        String isbn = builder.isbn;
+        String authorLastName = builder.author.getLastName();
+        String title = builder.title;
+        if(isbn == null || isbn.trim().equals("")) {
+            throw new IllegalArgumentException("The ISBN should be filled!");
+        }
+        if(authorLastName == null || authorLastName.trim().equals("")) {
+            throw new IllegalArgumentException("The author's last name should be filled!");
+        }
+        if(title == null || title.trim().equals("")) {
+            throw new IllegalArgumentException("The title should be filled!");
+        }
+        return true;
     }
 
 

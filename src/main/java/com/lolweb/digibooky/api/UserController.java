@@ -35,11 +35,11 @@ public class UserController {
          return userService.addNewMember(newMember);
     }
 
-    @RequestMapping(path="/admin")
+    @RequestMapping(path="/register-librarian")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerLibrarian(@RequestBody  CreateUserDto newLibrarian, @RequestHeader String authorization) {
-//        logger.debug("Method not running properly");
+        logger.debug("Method not running properly");
         securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
         return userService.addNewLibrarian(newLibrarian);
 
@@ -51,12 +51,4 @@ public class UserController {
         return userService.getUserRepository().getAll().stream().map(user -> UserMapper.mapUserToUserDto(user)).collect(Collectors.toList());
     }
 
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path="")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public UserDto registerAdmin(@RequestBody  UserDto newAdmin, @RequestHeader String authorization) {
-//        // todo change to REGISTER_ADMIN
-//        securityService.validateAccess(authorization, Feature.REGISTER_LIBRARIAN);
-//        userService.addNewLibrarian(newAdmin);
-//        return newAdmin;
-//    }
 }

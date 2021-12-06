@@ -227,7 +227,7 @@ public class BookControllerTest {
         userMapper = new UserMapper();
         userService = new UserService(userRepository, securityService);
         securityService = new SecurityService(userRepository);
-        bookController = new BookController(bookService, userService, securityService);
+        bookController = new BookController(bookService, securityService);
         author = new Author("Tim", "Le Massart");
 
         book1 = Book.BookBuilder.bookBuilder()

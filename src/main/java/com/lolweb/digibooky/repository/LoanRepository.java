@@ -23,10 +23,6 @@ public class LoanRepository {
         return activeLoans;
     }
 
-    public List<BookLoan> getAllActiveLoans() {
-        return activeLoans.values().stream().collect(Collectors.toList());
-    }
-
     public BookLoan save(BookLoan bookLoan) {
         this.activeLoans.put(bookLoan.getId(), bookLoan);
         return bookLoan;
@@ -53,13 +49,5 @@ public class LoanRepository {
 
     public BookLoan getBookLoanById(UUID bookLoanId){
         return activeLoans.get(bookLoanId);
-    }
-    public UUID getBookByMemberId(UUID memberId){
-        for(UUID id : bookMemberMap.keySet()){
-           if(bookMemberMap.get(id) == memberId){
-               return id;
-           }
-       }
-       return null;
     }
 }

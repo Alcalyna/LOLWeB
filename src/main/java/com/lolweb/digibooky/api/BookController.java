@@ -3,7 +3,6 @@ package com.lolweb.digibooky.api;
 import com.lolweb.digibooky.domain.feature.Feature;
 import com.lolweb.digibooky.service.BookService;
 import com.lolweb.digibooky.service.SecurityService;
-import com.lolweb.digibooky.service.UserService;
 import com.lolweb.digibooky.service.dtos.BookDto;
 import com.lolweb.digibooky.service.dtos.CreateBookDto;
 import org.springframework.http.HttpStatus;
@@ -18,12 +17,10 @@ import java.util.UUID;
 public class BookController {
 
     private BookService bookService;
-    private UserService userService;
     private final SecurityService securityService;
 
-    public BookController(BookService bookService, UserService userService, SecurityService securityService) {
+    public BookController(BookService bookService, SecurityService securityService) {
         this.bookService = bookService;
-        this.userService = userService;
         this.securityService = securityService;
     }
 

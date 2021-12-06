@@ -29,7 +29,8 @@ public class BookLoanController {
     @ResponseStatus(HttpStatus.CREATED)
     public BookLoanDto loanABook(@RequestBody CreateBookLoanDto createBookLoanDto, @RequestHeader String authorization) {
         securityService.validateAccess(authorization, Feature.BORROW_BOOK);
-        return bookLoanService.createBookLoan(createBookLoanDto, authorization);
+        securityService.validateCanHaveAccessToBook(authorization, createBookLoanDto);
+        return bookLoanService.createBookLoan(createBookLoanDto);
     }
 
     @GetMapping(params = "idMember")

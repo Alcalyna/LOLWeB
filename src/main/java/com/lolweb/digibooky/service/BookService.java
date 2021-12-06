@@ -28,10 +28,6 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public Book getBookById(UUID id) {
-        return this.bookRepository.getById(id);
-    }
-
     public BookDto getBookDtoById(UUID id) {
         Book bookToReturn = bookRepository.getById(id);
         return BookMapper.mapToBookDto(bookToReturn);
@@ -80,26 +76,11 @@ public class BookService {
 
     public BookDto addNewBook(CreateBookDto newBook) {
         Book book = BookMapper.mapCreateBookDtoToBook(newBook);
-        if(bookValidInputs(book)) {
+        if(book.validateInput(null)) {
             book.setAvailable(true);
             bookRepository.getBooksInLibrary().put(book.getId(), book);
         }
         return BookMapper.mapToBookDto(book);
     }
 
-    public boolean bookValidInputs(Book book) {
-        String isbn = book.getIsbn();
-        String authorLastName = book.getAuthor().getLastName();
-        String title = book.getTitle();
-        if(isbn == null || isbn.trim().equals("")) {
-            throw new IllegalArgumentException("The ISBN should be filled!");
-        }
-        if(authorLastName == null || authorLastName.trim().equals("")) {
-            throw new IllegalArgumentException("The author's last name should be filled!");
-        }
-        if(title == null || title.trim().equals("")) {
-            throw new IllegalArgumentException("The title should be filled!");
-        }
-        return true;
-    }
 }
